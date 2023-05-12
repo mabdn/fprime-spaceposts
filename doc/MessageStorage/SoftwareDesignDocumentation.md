@@ -148,12 +148,6 @@ To write a message to a file, the message type must be serialized into a raw byt
 
 
 
----
-
-The component treats the message type `UserMessage` as a black-box 
-
-
-
 
 ## Test Summary
 TODO
