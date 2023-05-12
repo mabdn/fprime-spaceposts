@@ -106,7 +106,19 @@ For the sake of simplicity, we assume that the index counter never exceeds the m
 
 ### Message Type
 ---
+**Challenge**
 
+At the time this component was developed, the decision of what content will make up a message was still pending. Furthermore, this decision might change in the future.
+
+**Resulting Design Decision**
+
+The component encapsulates a message in the type `UserMessage`. 
+
+To make the component as independent of this type as possible, the component uses knowledge about this type only in a few very conciously choosen locations: 
+* The component receives `UserMessage`s via its ports for communication with other components. Thus, the handler methods for port invocations know that the concrete type of messages is `UserMessage`.
+* In all other places of the component, the concrete type `UserMessage` is hidden behind the abstract class `Serializable`. Consequently, in all of these place, the only assumption the component makes about the messages it is supposed to store is that they can be serialized into and deserialized from a raw byte buffer. No other assumptions are needed to store it in a file.
+
+Therefore, the handler methods receive a message as a `UserMessage` but only call other methods in the component by passing them a base class pointer of type `Serializable` to the message.
 
 
 
