@@ -76,11 +76,27 @@ Operating System.
 - Bob: What technologies did he use? Do they match the one we use?
 - Charly: What do the different parts of the code do?
 - Charly: What can I change without breaking the design or functionality? -->
-### Internal Architecture
---- 
 
+### Storage Format
+---
+**Challenge**
 
+The component should store each message in a separate file. The component can assume that it is given access to a *storage directory* on the file system to store these files. 
 
+The component should not crash even if 
+* files other than the ones written by the component are (accidentally) put into the storage directory 
+* files the component wrote to the storage directory are corrupted. This is a plausible scenario as radiation can cause bit error on the storage device.
+
+**Resulting Design Decision**
+
+Every message is stored with a unique file name in the storage directory (see [Indexing](#indexing)).
+
+Each message file follows the following format consisting of the following.
+* Delimiter: A unique byte value that is expected as the first byte of every stored message file. Thus, we prevent basic protection against trying to load files as message files which do not originate from the `MessageStorage` component. 
+* Message Length: A `U32` that indicates how long the byte-serial representation of the message is. It helps to verify that the correct number of bytes is read and deserialized when loading the actual message from the file
+* Message Content: The byte-serial representation of the message data. It contains everything needed to fully restore a message so that the message object obtained from loading is the same as the one provided for storing.
+
+![Message File Format](MessageStorage_MessageFileFormat.png)
 
 ### Indexing
 ---
@@ -120,6 +136,15 @@ To make the component as independent of this type as possible, the component use
 
 Therefore, the handler methods receive a message as a `UserMessage` but only call other methods in the component by passing them a base class pointer of type `Serializable` to the message.
 
+### Serialization and Writing to File
+---
+**Challenge**
+
+To write a message to a file, the message type must be serialized into a raw byte buffer. The address of that raw buffer must then be used to make a system call to the operating system.
+
+**Resulting Design Decision**
+- Serialize messages and other data by calling the framework's `Serializable` interface on the type which is to be serialized
+- Serialize data to a buffer which is allocated on the stack to avoid dynamic memory allocation. The buffer is implemented as a local class `StackBuffer` inside the `MessageStorage` component.
 
 
 
