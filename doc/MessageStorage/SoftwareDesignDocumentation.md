@@ -34,7 +34,7 @@ Target Audience:
 
 The `MessageStorage` component is a passive F' component responsible for storing and loading messages of type
 `UserMessage`
-on the file system.
+on / from the satellite's file system.
 
 ## Interface to Other Components
 <!-- Danny: How do I use the component? -->
