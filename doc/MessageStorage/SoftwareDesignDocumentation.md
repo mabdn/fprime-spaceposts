@@ -1,26 +1,4 @@
-## Purpose
-Present and explains my work on MEMESat BBS Message Storage component.
 
-Target Audience:
-- Alice: Recruiter at XYZ Autos GmBH. HR Abteilung. Kaum Fachwissen
-- Bob: Software Engineering Lead at Munich Dynamics. Softwareengineering und Robotikfachwissen
-- Charly: UGA undergrad 2nd year. CE major. Team Member at SSRL that needs to fix a bug in my code after I have left.
-- Danny: UGA undergrad 2nd year. CS major. Team Member at SSRL that needs to write a component which uses mine.
-
-## Questions to answer
-
-- Alice: What was the project about?
-- Alice: What skills did he learn that apply to our job offering?
-- Alice: Why was it challenging?
-- Bob: What technical challenges did he solve?
-- Bob: What technologies did he use? Do they match the one we use?
-- Bob: Does he have good coding skills and does he follow software engineering best practices X
-- Bob: Is his documentation easy to understand? X
-- Charly: What do the different parts of the code do?
-- Charly: Why is X implemented like that and not like ...?
-- Charly: What can I change without breaking the design or functionality?
-- Danny: How do I use the component?
-- Danny: What is the component supposed to do? What is it for?
 
 
 ## Content

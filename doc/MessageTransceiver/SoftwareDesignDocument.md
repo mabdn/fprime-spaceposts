@@ -26,7 +26,9 @@ Multiple messages need to be downlinked in response to the ground station in res
 
 **Resulting Design Decision**
 
-The mes
+* Multiple transmissions. One per message
+    * Keeps the packet size small
+    * Upon transmission failure, potentially allows some messages to be transmitted sucessfully while only some others fail.
 
 
 ## Test Summary
