@@ -1,5 +1,6 @@
 # MessageModerator Component Documentation
 ## Summary
+The `Moderator` component is a passive F' component that decides whether received messages are stored or discared based on a set of moderation rules.
 ## Requirements
 ### Functional Requirements
 Requirement | Description | Verification Method

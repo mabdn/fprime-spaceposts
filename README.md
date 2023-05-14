@@ -77,7 +77,7 @@ Draft:
     * * 
     * ActiveRateGroup
     * CommandDispatcher
-    * Deframer??
+    * Framer??
   * Brief description of every component + link to their sdd
   * Design Decisions
     * Separation in components
@@ -97,13 +97,31 @@ Draft:
 ### Component Model
 The system is realized by introducing three new components and by interfacing with three components of the F' framework.
 
-The following components have been customly developed for this system:
+The following components have been custom developed for this system:
    
   * **MessageStorage**
 
-    Component with one port to accepts a `UserMessage` to store it on the file system and another port to load a given number of recently stored messages.
+    Component with one port to accept a `UserMessage` to store it on the file system and another port to load a given number of recently stored `UserMessage`s.
 
-    It is a separate component because it encapsulates the general logic for stroing a `Fw::Serializable` 
+    It is a separate component because it encapsulates the general logic for storing `Fw::Serializable` C++ objects in a file on the file system using the Operating System Abstraction Layer (OSAL) of F'. Thus, the component can easily be adapted to additionally store other types than only `UserMessage`s in the future.
+
+* **Moderator**
+
+	Component with one input port and one output port where `UserMessage`s given to the input port must pass a moderation check to be output on the output port. 
+
+  It has the same interface for storing (i.e., with the same input port type) as the MessageStorage component. Thus, it can be optionally plugged in between the Transceiver component and the MessageStorage component without any of them knowing about the existence of the Moderator component. Therefore it is reasonable to have the Moderator as a separate component.
+
+* **Transceiver**
+
+	Component to receive `UserMessage`s from users on the ground and to downlink the `UserMessage`s stored on the satellite to users on the ground.
+
+  It is a separate component because it encapsulates how users can trigger the loading and storing of `UserMessage`s on the satellite. Consequently, the Transceiver implementation can be swapped out to change how the satellite communicates messages with users on the ground.
+
+The system uses the following framework components to integrate its functionality into the F' reference flight software system `Ref`:
+* **Svc.CommandDispatcher**: Receives commands sent to the satellite by ground station operators and forwards them to the appropriate component.
+* **Svc.ActiveRateGroup**: Calls the Transceiver component's `scheduleDownlink` port at a fixed rate to consistently trigger downlinking the `UserMessage`s stored on the satellite.
+*  **Svc.Framer**: Handles downlinking a given F' type to the ground station.
+  <!-- TODO: Is Svc.Framer correct? -->
 
 
 ## Installation
@@ -125,6 +143,9 @@ To add a screenshot, create an `assets/images` folder in your repository and upl
     ```md
     ![alt text](assets/images/screenshot.png)
     ```
+Draft:
+* How to use it in an existing F' Flight Software System? Developers that wish to use the code of this repository can swap out the implementations for these components to fit the UserMessage system into their own  F' flight software system (see [Used Framwork Components](#component-model)).
+
 ### Example: Send Message to Satellite
 Make sure to include at least one nicely visualized examples / tutorial.
 
