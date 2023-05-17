@@ -26,6 +26,8 @@ An onboard moderation is necessary because the satellite is supposed to receive 
 However, one of the UserMessage System's requirements is to ensure that no inappropriate messages are downlinked by the satellite. We chose to fulfill this requirement by rejecting an inappropriate message when it is received and thus before it is stored on the satellite.
 
 ## Interface to Other Components
+### Component Diagram
+![Moderator Component Diagram](Moderator_ComponentDiagram.png)
 
 ## Dependencies
 The component depends on an implementation of the moderation criteria in a `ModerationStrategy` object. Its is injected into the constructor of the `Moderator` component via dependency injection.
