@@ -8,7 +8,7 @@ Requirement | Description | Verification Method
 F-TRA-010 | The component shall provide a command that stores a given string as a message on the satellite | Unit test, integration test
 F-TRA-020 | The component shall provide a command for ground station operators to initiate a downlink of a certain number of last stored messages as a string | Unit test, integration test
 F-TRA-021 | The component shall provide a command for HAM radio users to initiate a downlink of a certain number of last stored messages as a string | Unit test, integration test
-F-TRA-022 | The component shall provide a way to configure during runtime whether the command in F-TRA-021 is executed or rejected | Unit test
+F-TRA-022 | The component shall provide a way to configure, during runtime, whether the command in F-TRA-021 is executed or rejected when it is received | Unit test
 F-TRA-023 | The component shall automatically configure itself to reject commands as in F-TRA-022 every time the satellite reaches critical power | Manual code review
 F-TRA-025 | The component shall provide a scheduling input port which can be connected to the ouput port of an active rate group. Everytime the port is called, the component initiates a downlink of a certain number of last stored messages as a string | Unit test, Integration test
 F-TRA-030 | Downlinking messages shall be performed in a separate transmission per message | Unit test 
@@ -22,9 +22,9 @@ NF-TRA-010 | The number of last messages to downlink in F-TRA-020, F-TRA-021, an
 NF-TRA-020 | The component shall be adaptable to scheduling and triggering downlinks from different sources and for different reasons | Manual code review
 ## Interface to Other Components
 ## Dependencies
-* Framer for downlinking
-* CommandScheduler for receiving commands from ground station
-* Moderator and MessageStorage
+Even though this component requires three other components (see [UserMessage System Component Model](/README.md#component-model)) to provide the functionality that it is supposed to provide in the UserMessage System, the code for this component is completely independent of the components it requires. The components communicate through well-defined F' framework component ports and thus avoid any C++ code dependencies.
+  
+
 ## Internal Design
 ### Downlinking Messages
 
