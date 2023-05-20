@@ -1,6 +1,8 @@
 # Transceiver Component Documentation
 ## Summary
 The `Transceiver` component is a passive F' component that receives messages from users on the ground and downlinks messages to users on the ground.
+## Necessity
+TODO
 ## Requirements
 ### Functional Requirements
 Requirement | Description | Verification Method
