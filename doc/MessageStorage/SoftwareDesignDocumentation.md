@@ -71,7 +71,7 @@ Every message is stored with a unique file name in the storage directory (see [I
 
 Each message file follows the following format consisting of the following.
 * Delimiter: A unique byte value that is expected as the first byte of every stored message file. Thus, we provide basic protection against trying to load files which do not originate from the `MessageStorage` component as message files.
-* Message Length: A `U32` that indicates how long the byte-serial representation of the message is. It helps to verify that the correct number of bytes is read and deserialized when loading the actual message from the file.
+* Message Length: A `U32` in little-endian order that indicates how long the byte-serial representation of the message is. It helps to verify that the correct number of bytes is read and deserialized when loading the actual message from the file.
 * Message Content: The byte-serial representation of the message data. It contains everything needed to fully restore a message so that the message object obtained from loading is the same as the one provided for storing.
 
 ![Message File Format](MessageStorage_MessageFileFormat.png)

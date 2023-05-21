@@ -29,11 +29,16 @@ Target Audience:
 
 ## Description
 An implementation to receive, moderate, store, and send end-user text messages (called `UserMessage`) on a satellite using NASA JPL's F' embedded flight software framework.
+### Experience I gained from this project
+TODO Bullets like in resume
+TODO Shield for lines of source, lines of test code
+
 ## Table of Contents
 - [F' UserMessage Extension](#f-usermessage-extension)
   - [Purpose](#purpose)
   - [Questions to answer](#questions-to-answer)
   - [Description](#description)
+    - [Experience I gained from this project](#experience-i-gained-from-this-project)
   - [Table of Contents](#table-of-contents)
   - [Technologies](#technologies)
   - [Features](#features)
