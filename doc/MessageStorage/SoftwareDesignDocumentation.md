@@ -20,7 +20,7 @@ on / from the satellite's file system.
 ![MessageStorage Component Diagram](MessageStorage_ComponentDiagram.png)
 ### Ports
 Other components which want to use `MessageStorage` to store a message need to call its ports.
-* `storeMessage`: Stores a single given message
+* `storeMessage`: Stores a single given message. 
 * `loadMessageLastN`: Loads a given number of the most recently stored messages. I.e., messages are handled in last-in-first-out order. The loaded messages are returned in a batch which is defined as a type.
 * `loadMessageFromIndex`: Loads a single message from a provided index. The index is an identifier number internal to 
   the component. This port is only useful if the user knows what index they are looking for, e.g. from an event or 
