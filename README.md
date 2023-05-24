@@ -15,6 +15,7 @@ Target Audience:
 - Alice: What was the project about?
 - Alice: What skills did he learn that apply to our job offering?
 - Alice: Why was it challenging?
+- Bob: What is F'?
 - Bob: What technical challenges did he solve?
 - Bob: What technologies did he use? Do they match the one we use?
 - Bob: Does he have good coding skills and does he follow software engineering best practices X
@@ -27,9 +28,14 @@ Target Audience:
 
 ---
 
+## Summary
+An implementation to receive, moderate, store, and send end-user text messages (called *BBSMessages*) on a satellite in embedded C++ using NASA JPL's F' flight software framework.
+
+It enables users to publish their own BBSMessage to a satellite and receive all users' published BBSMessages from that satellite.
+
 ## Description
-An implementation to receive, moderate, store, and send end-user text messages (called `UserMessage`) on a satellite using NASA JPL's F' embedded flight software framework.
 ### Experience I gained from this project
+
 TODO Bullets like in resume
 TODO Shield for lines of source, lines of test code
 
@@ -37,10 +43,12 @@ TODO Shield for lines of source, lines of test code
 - [F' UserMessage Extension](#f-usermessage-extension)
   - [Purpose](#purpose)
   - [Questions to answer](#questions-to-answer)
+  - [Summary](#summary)
   - [Description](#description)
     - [Experience I gained from this project](#experience-i-gained-from-this-project)
   - [Table of Contents](#table-of-contents)
   - [Technologies](#technologies)
+    - [What is F'?](#what-is-f)
   - [Features](#features)
   - [Design](#design)
     - [Component Model](#component-model)
@@ -57,6 +65,13 @@ TODO Shield for lines of source, lines of test code
 * C++-17
 * NASA JPL's F' Flight Software Framework
 * Google Test 2? for unit tests
+  
+### What is F'?
+* Components
+* NASA
+* Link to their GitHub
+* Reputable: Ingenuity
+* Goals: Embedded C++, High Code Quality, ...
 
 ## Features
 The developed systems affords the following functionality:
@@ -105,7 +120,7 @@ The system is realized by introducing three new components and by interfacing wi
 
 UML component diagram:
 ![UserMessage System UML Component Diagram](doc/README/UserMessageSystemUMLComponentDiagram.png)
-<!-- TODO: Remove white edge -->
+<!-- TODO: Remove white edge + Remove Title -->
 
 The following three components have been custom developed for this system:
    
@@ -191,7 +206,7 @@ If you used any third-party assets that require attribution, list the creators w
 
 If you followed tutorials, include links to those here as well.
 * Link fprime
-* Purpose build for the requirements of a satellite mission at the University of Georgia's [Small Satellite Research Laboratory](http://www.smallsat.uga.edu/) (SSRL)
+* Purpose-built for the requirements of a satellite mission at the University of Georgia's [Small Satellite Research Laboratory](http://www.smallsat.uga.edu/) (SSRL)
 
 
 ## License
