@@ -85,14 +85,8 @@ This repository spotlights how I contributed to MEMESat-1 by developing the enti
   <a href="http://www.smallsat.uga.edu/" target="_blank">
   <img src="doc/README/img/SSRL_Logo_Full.png" width="400px">
   </a>
-    &nbsp;
-  &nbsp;
-  &nbsp;
-  &nbsp;
-  &nbsp;
-  &nbsp;
   <a href="http://www.smallsat.uga.edu/" target="_blank">
-  <img src="doc/README/img/SSRL_Lab.png" width="250px">
+  <img src="doc/README/img/SSRL_Lab.png" width="270px">
   </a>
 </p>
 
