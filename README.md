@@ -29,15 +29,51 @@ Target Audience:
 ---
 
 ## Summary
-An implementation to receive, moderate, store, and send end-user text messages (called *BBSMessages*) on a satellite in embedded C++ using NASA JPL's F' flight software framework.
 
-It enables users to publish their own BBSMessage to a satellite and receive all users' published BBSMessages from that satellite.
+An implementation to receive, moderate, store, and send end-user text messages (called **BBSMessages**) on a satellite in embedded C++ using NASA JPL's F' flight software framework.
+
+It enables users to publish their own text messages to a satellite and receive all other users' published text messages from that satellite.
 
 ## Description
-### Experience I gained from this project
 
-TODO Bullets like in resume
-TODO Shield for lines of source, lines of test code
+This repository presents one part of my contribution to the **[MEMESat-1](https://ieeexplore.ieee.org/document/10116009)** satellite during a 7-week full-time (40h/week) position as a **Flight Software Engineer** in the Command & Data Handling (CDH) team at the University of Georgia's **[Small Satellite Research Laboratory](http://www.smallsat.uga.edu/).**
+
+### Experience Gained From This Project
+
+TODO: Add numbers
+
+- Developed 3 flight software components for a satellite in embedded C++17 with X lines of code in NASA's F' framework by designing, implementing, and testing them from scratch
+- Ensured space-grade code quality standards with 100% line coverage and 90% branch coverage by data-driven unit testing with GoogleTest as well as thorough code reviews 
+- Elicited and specified requirements with stakeholders across different teams and from various subject areas
+- > Missing: Accomplishment, Quantity
+- Skill: Requirements engineering
+- Task: ?, interdisciplinary environment
+- Result/Accomplishment:?
+- Quantity: ?
+- Purpose: ?
+- Technical Writing
+    - Skill: Technical Writing
+    - Task: Document engineering process (requirements, design, implementation, testing)
+    - Quantity: X number of pages?, X lines of documentation per line of code?,
+    - Result/Accomplishment: Easy knowledge transfer after I left / in the team
+    - 
+
+### The Concept of BBSMessages
+
+BBSMessages realize a public [bulletin board](https://en.wikipedia.org/wiki/Bulletin_board_system) for text messages on a satellite in space. Anyone with amateur radio equipment shall be able to interact with the bulletin board. Essentially, users can post BBSMessages to the board and read all BBSMessages from the board. A BBSMessage consists of a simple text message, just like a Tweet on Twitter.
+
+For everyone without amateur radio equipment, there is a website that allows them to publish and read BBSMessages from the board through a ground station that handles transmitting and receiving.
+
+### Realization of BBSMessages
+
+In fact, BBSMessages are not only a theoretical concept but they are being realized in the form of the **[MEMESat-1](https://ieeexplore.ieee.org/document/10116009)** CubeSat satellite at the **[University of Georgia's Small Satellite Research Laboratory](http://www.smallsat.uga.edu/).**
+
+It is set to be launched into space in cooperation with NASA in Q2-2024.
+
+This repository spotlights how I contributed to MEMESat-1 by developing the entire satellite-side software system for BBSMessages MEMESat-1. I defined, designed, implemented, and tested this software as one part of my work during a 7-week full-time (40h/week) position as a Flight Software Engineer in the Command & Data Handling (CDH) team.
+
+<div style="display:flex; justify-content:space-around;"><img src="doc/README/img/MEMESAT-1_Badge.png" style="max-width:20%; height:auto;"><img src="doc/README/img/SSRL_Logo_Full.png" style="max-width:50%; height:auto;"></div>
+
 
 ## Table of Contents
 - [F' UserMessage Extension](#f-usermessage-extension)
@@ -45,7 +81,9 @@ TODO Shield for lines of source, lines of test code
   - [Questions to answer](#questions-to-answer)
   - [Summary](#summary)
   - [Description](#description)
-    - [Experience I gained from this project](#experience-i-gained-from-this-project)
+    - [Experience Gained From This Project](#experience-gained-from-this-project)
+    - [The Concept of BBSMessages](#the-concept-of-bbsmessages)
+    - [Realization of BBSMessages](#realization-of-bbsmessages)
   - [Table of Contents](#table-of-contents)
   - [Technologies](#technologies)
     - [What is F'?](#what-is-f)
