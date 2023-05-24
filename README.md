@@ -40,23 +40,11 @@ This repository presents one part of my contribution to the **[MEMESat-1](https
 
 ### Experience Gained From This Project
 
-TODO: Add numbers
+<!-- TODO: Add numbers. Make action word + quantity bold -->
 
 - Developed 3 flight software components for a satellite in embedded C++17 with X lines of code in NASA's F' framework by designing, implementing, and testing them from scratch
 - Ensured space-grade code quality standards with 100% line coverage and 90% branch coverage by data-driven unit testing with GoogleTest as well as thorough code reviews 
 - Elicited and specified requirements with stakeholders across different teams and from various subject areas
-- > Missing: Accomplishment, Quantity
-- Skill: Requirements engineering
-- Task: ?, interdisciplinary environment
-- Result/Accomplishment:?
-- Quantity: ?
-- Purpose: ?
-- Technical Writing
-    - Skill: Technical Writing
-    - Task: Document engineering process (requirements, design, implementation, testing)
-    - Quantity: X number of pages?, X lines of documentation per line of code?,
-    - Result/Accomplishment: Easy knowledge transfer after I left / in the team
-    - 
 
 ### The Concept of BBSMessages
 
@@ -68,9 +56,10 @@ For everyone without amateur radio equipment, there is a website that allows the
 
 In fact, BBSMessages are not only a theoretical concept but they are being realized in the form of the **[MEMESat-1](https://ieeexplore.ieee.org/document/10116009)** CubeSat satellite at the **[University of Georgia's Small Satellite Research Laboratory](http://www.smallsat.uga.edu/).**
 
-It is set to be launched into space in cooperation with NASA in Q2-2024.
+MEMESat-1 is set to be launched into space in cooperation with NASA in Q2-2024.
 
-This repository spotlights how I contributed to MEMESat-1 by developing the entire satellite-side software system for BBSMessages MEMESat-1. I defined, designed, implemented, and tested this software as one part of my work during a 7-week full-time (40h/week) position as a Flight Software Engineer in the Command & Data Handling (CDH) team.
+
+This repository spotlights how I contributed to MEMESat-1 by developing the entire satellite-side software system for BBSMessages on MEMESat-1. I defined, designed, implemented, and tested this software as one part of my work during a 7-week full-time (40h/week) position as a Flight Software Engineer in the Command & Data Handling (CDH) team.
 
 <p align="center" float="left">
   <a href="https://ieeexplore.ieee.org/document/10116009" target="_blank">
@@ -85,12 +74,13 @@ This repository spotlights how I contributed to MEMESat-1 by developing the enti
   <a href="http://www.smallsat.uga.edu/" target="_blank">
   <img src="doc/README/img/SSRL_Logo_Full.png" width="400px">
   </a>
+</p>
+
+<p align="center">
   <a href="http://www.smallsat.uga.edu/" target="_blank">
   <img src="doc/README/img/SSRL_Lab.png" width="270px">
   </a>
 </p>
-
-
 
 ## Table of Contents
 - [F' UserMessage Extension](#f-usermessage-extension)
@@ -105,6 +95,9 @@ This repository spotlights how I contributed to MEMESat-1 by developing the enti
   - [Technologies](#technologies)
     - [What is F'?](#what-is-f)
   - [Features](#features)
+    - [Purpose and Environment](#purpose-and-environment)
+    - [High-level Functionality (Functional Requirements)](#high-level-functionality-functional-requirements)
+    - [UML Use Case Diagram](#uml-use-case-diagram)
   - [Design](#design)
     - [Component Model](#component-model)
     - [Dynamic Model](#dynamic-model)
@@ -117,31 +110,34 @@ This repository spotlights how I contributed to MEMESat-1 by developing the enti
   - [License](#license)
 
 ## Technologies
-* C++-17
-* NASA JPL's F' Flight Software Framework
-* Google Test 2? for unit tests
+* **C++-17** Programming Language in **Embedded** Environment
+* NASA JPL's **F' (*F Prime*)** Flight Software Framework
+* **GoogleTest** Unit Test Framework
   
 ### What is F'?
-* Components
-* NASA
-* Link to their GitHub
-* Reputable: Ingenuity
-* Goals: Embedded C++, High Code Quality, ...
+
+[F´ (*F Prime*)](https://github.com/nasa/fprime) is an open-source component-driven framework for spaceflight and other embedded software applications. Originally developed at the [NASA JPL](https://www.jpl.nasa.gov/), F´ has been deployed on [several space applications](https://nasa.github.io/fprime/projects.html) like the Mars Helicopter Ingenuity. It is tailored but not limited to small-scale spaceflight systems such as CubeSats.
 
 ## Features
-The developed systems affords the following functionality:
-* TODO
 
-Zielbestimmung und Produkteinsatz:
-* Was ist der Zweck des Produkts?
-* Wo soll das Produkt eingesetzt werden? Auf einem Cubesat mit einem Raspberry Pi CM4.
+### Purpose and Environment
 
-AWfalldiagram:
-* Ground Station Operator -> Ground Station -> Satellite
-* HAM radio user -> Satellite
-* Contains all functionality as a use case
+**Purpose**: The BBSMessage system enables users to publish their own BBSMessage to a satellite and receive all other users' published BBSMessages from that satellite.
 
-Keep it short and concise!
+**Product Environment**: The BBSMessage system will be deployed on the Raspberry Pi CM4 of the [MEMESat-1](https://ieeexplore.ieee.org/document/10116009) CubeSat satellite.
+
+### High-level Functionality (Functional Requirements)
+
+- Users can post a message to the satellite
+    - Receive message upload from earth
+    - Apply a moderation check to the message
+    - Store the message on the satellite
+- Users can request all posted messages
+    - Load messages from the satellite
+    - Send the messages to earth
+
+### UML Use Case Diagram
+![UML Use Case Diagram](doc/README/img/UseCase_Diagram.png)
 
 ## Design
 Draft:
