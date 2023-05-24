@@ -72,7 +72,21 @@ It is set to be launched into space in cooperation with NASA in Q2-2024.
 
 This repository spotlights how I contributed to MEMESat-1 by developing the entire satellite-side software system for BBSMessages MEMESat-1. I defined, designed, implemented, and tested this software as one part of my work during a 7-week full-time (40h/week) position as a Flight Software Engineer in the Command & Data Handling (CDH) team.
 
-<div style="display:flex; justify-content:space-around;"><img src="doc/README/img/MEMESAT-1_Badge.png" style="max-width:20%; height:auto;"><img src="doc/README/img/SSRL_Logo_Full.png" style="max-width:50%; height:auto;"></div>
+<p align="center" float="left">
+  <a href="https://ieeexplore.ieee.org/document/10116009" target="_blank">
+  <img src="doc/README/img/MEMESAT-1_Badge.png" width="200px">
+  </a>
+  &nbsp;
+  &nbsp;
+  &nbsp;
+  &nbsp;
+  &nbsp;
+  &nbsp;
+  <a href="https://www.smallsat.uga.edu/" target="_blank">
+  <img src="doc/README/img/SSRL_Logo_Full.png" width="400px">
+  </a>
+</p>
+
 
 
 ## Table of Contents
