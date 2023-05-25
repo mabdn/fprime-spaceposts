@@ -54,11 +54,12 @@ This repository presents one part of my contribution to the **[MEMESat-1](https
 
 ### Experience Gained From This Project
 
-<!-- TODO: Add numbers. Make action word + quantity bold -->
+<!-- TODO: Add numbers -->
 
-- Developed 3 flight software components for a satellite in embedded C++17 with X lines of code in NASA's F' framework by designing, implementing, and testing them from scratch
-- Ensured space-grade code quality standards with 100% line coverage and 90% branch coverage by data-driven unit testing with GoogleTest as well as thorough code reviews 
-- Elicited and specified requirements with stakeholders across different teams and from various subject areas
+- **Developed** **4 flight software components for a satellite** in **embedded C++17** with **X lines of code** in **NASA**'s [F' framework](https://github.com/nasa/fprime) by designing, implementing, and testing them from scratch
+- **Ensured** **space-grade code quality** standards with **100% line coverage** and **90% branch coverage** by data-driven unit testing with **GoogleTest** as well as thorough code reviews
+- **Elicited the requirements** for the SpacePosts software product by discussing the desired functionality and security needs with [MEMESat-1](http://www.smallsat.uga.edu/missions)'s **mission leadership** and the [funding organization](https://letsgo2space.com/)'s **CEO**, resulting in a product that closely conforms with the satellite's mission goals
+- **Documented the engineering process** extensively on **X pages** with **X lines of documentation per developed line of code** by establishing software engineering best practices in the embedded engineering team, resulting in **improved knowledge transfer** within the team
 
 ### The Concept of BBSMessages
 
