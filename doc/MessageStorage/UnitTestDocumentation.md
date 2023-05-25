@@ -1,12 +1,12 @@
 # BBSMessageStorage Unit Test Documentation
 
 ## Summary
-
+TODO numbers
 - The BBSMessageStorage component has been unit tested to X% line coverage and X% branch coverage.
 - The unit tests follow the data-driven unit test style.
 - The unit tests are implemented with the GoogleTest testing library.
 - Both black-box and white-box unit tests are used to make the unit tests as independent from the component as possible while still covering all internal error-handling branches.
-- An object-oriented model is used to simplify the unit tests by modeling helper data and functionality in classes.
+- An object-oriented model is used to simplify the unit tests by modeling helper data and functionality in separate classes.
 
 ## Table of Contents
 - [BBSMessageStorage Unit Test Documentation](#bbsmessagestorage-unit-test-documentation)
@@ -17,7 +17,6 @@
   - [Test Strategy](#test-strategy)
   - [Test Environment](#test-environment)
   - [List of Test Cases](#list-of-test-cases)
-  - [Test List](#test-list)
 
 
 ## Test Success Criteria
@@ -100,7 +99,6 @@ The BBSMessageStorage component is tested together with the Operating System Abs
 The unit tests do not follow the embedded coding style as the source code does. This decision is advisable because the unit tests will not be executed in an embedded environment. Thus, modern C++ features can be used to reduce code complexity.
 
 ## List of Test Cases
-## Test List
 
 This list outlines all the unit test that have been implemented. For more detailed explanations of how the unit tests are realized, refer to the test method comments in Tester.hpp //TODO link.
 
@@ -113,3 +111,12 @@ This list outlines all the unit test that have been implemented. For more detail
 | UT-STO-040 | Test loading a message from a given index based on the validity of the file on disk referenced by the index | 1. Place a consciously formatted file for a BBS message on disk, 2. Call component input port to load a message from the index, 3. If invalid file: Check whether loading fails for the specific reason for which it should by checking the emitted events and telemetry. If valid file: Check whether returned message is the one that was stored in the message file | Message’s meta data, Message text’s length, Message text’s content, storage directory states from UT-STO-010 | Tester::testLoadValid-BBSFileFromIndex(), Tester::testLoadInvalid-BBSFileFromIndex() |
 | UT-STO-050 | Test whether loading last N messages selects the most recently stored messages based on different numbers for N | 1. Setup storage directory with certain existing files, 2. Call component input port to load the last N messages, 3. Check whether the loaded messages are the ones that have the most recent indices in specified order  | Number of messages N to load, storage directory states from UT-STO-010 |  |
 | UT-STO-060 | Test loading the last N messages based on the validity of the corresponding message files on disk | 1. Place consciously formatted files for BBS messages on disk as the last N message files, 2. Call component input port to load the last N messages, 3. Check whether invalid messages have been skipped in loading | Per placed message file: Message’s meta data, Message text’s length, Message text’s content; Number of messages N to load; Storage directory states from UT-STO-010; |  |
+
+**************************************White-Box Tests**************************************
+
+TODO
+
+| Test Case ID | Name | Steps | Variable Test Data | Realization |
+| --- | --- | --- | --- | --- |
+| U-STO-110 |  |  |  |  |
+|  |  |  |  |  |

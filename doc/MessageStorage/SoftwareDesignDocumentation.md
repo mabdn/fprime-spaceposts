@@ -122,4 +122,11 @@ To write a message to a file, the message type must be serialized into a raw byt
 
 
 ## Test Summary
-TODO Reference
+TODO numbers
+- The BBSMessageStorage component has been unit tested to X% line coverage and X% branch coverage.
+- The unit tests follow the data-driven unit test style.
+- The unit tests are implemented with the GoogleTest testing library.
+- Both black-box and white-box unit tests are used to make the unit tests as independent from the component as possible while still covering all internal error-handling branches.
+- An object-oriented model is used to simplify the unit tests by modeling helper data and functionality in separate classes.
+
+For detailed report of the unit tests, refer to the [unit test documentation](UnitTestDocumentation.md).
