@@ -34,6 +34,34 @@ An implementation to receive, moderate, store, and send end-user text messages (
 
 It enables users to publish their own text messages to a satellite and receive all other users' published text messages from that satellite.
 
+## Table of Contents
+- [F' UserMessage Extension](#f-usermessage-extension)
+  - [Purpose](#purpose)
+  - [Questions to answer](#questions-to-answer)
+  - [Summary](#summary)
+  - [Table of Contents](#table-of-contents)
+  - [Description](#description)
+    - [Experience Gained From This Project](#experience-gained-from-this-project)
+    - [The Concept of BBSMessages](#the-concept-of-bbsmessages)
+    - [Realization of BBSMessages](#realization-of-bbsmessages)
+  - [Technologies](#technologies)
+    - [What is F'?](#what-is-f)
+  - [Features](#features)
+    - [Purpose and Environment](#purpose-and-environment)
+    - [High-level Functionality (Functional Requirements)](#high-level-functionality-functional-requirements)
+    - [UML Use Case Diagram](#uml-use-case-diagram)
+  - [Design](#design)
+    - [Component Model](#component-model)
+    - [Dynamic Model](#dynamic-model)
+  - [Tests](#tests)
+    - [Example: Send Message to Satellite](#example-send-message-to-satellite)
+    - [Example: Receive Message from Satellite](#example-receive-message-from-satellite)
+  - [How To Use This Software](#how-to-use-this-software)
+    - [Integration With An Existing F' Flight Software System](#integration-with-an-existing-f-flight-software-system)
+    - [Installation](#installation)
+  - [Credits](#credits)
+  - [License](#license)
+
 ## Description
 
 This repository presents one part of my contribution to the **[MEMESat-1](https://ieeexplore.ieee.org/document/10116009)** satellite during a 7-week full-time (40h/week) position as a **Flight Software Engineer** in the Command & Data Handling (CDH) team at the University of Georgia's **[Small Satellite Research Laboratory](http://www.smallsat.uga.edu/).**
@@ -82,35 +110,8 @@ This repository spotlights how I contributed to MEMESat-1 by developing the enti
   </a>
 </p>
 
-## Table of Contents
-- [F' UserMessage Extension](#f-usermessage-extension)
-  - [Purpose](#purpose)
-  - [Questions to answer](#questions-to-answer)
-  - [Summary](#summary)
-  - [Description](#description)
-    - [Experience Gained From This Project](#experience-gained-from-this-project)
-    - [The Concept of BBSMessages](#the-concept-of-bbsmessages)
-    - [Realization of BBSMessages](#realization-of-bbsmessages)
-  - [Table of Contents](#table-of-contents)
-  - [Technologies](#technologies)
-    - [What is F'?](#what-is-f)
-  - [Features](#features)
-    - [Purpose and Environment](#purpose-and-environment)
-    - [High-level Functionality (Functional Requirements)](#high-level-functionality-functional-requirements)
-    - [UML Use Case Diagram](#uml-use-case-diagram)
-  - [Design](#design)
-    - [Component Model](#component-model)
-    - [Dynamic Model](#dynamic-model)
-  - [Installation](#installation)
-  - [Usage](#usage)
-    - [Example: Send Message to Satellite](#example-send-message-to-satellite)
-    - [Example: Receive Message from Satellite](#example-receive-message-from-satellite)
-  - [Tests](#tests)
-  - [Credits](#credits)
-  - [License](#license)
-
 ## Technologies
-* **C++-17** Programming Language in **Embedded** Environment
+* **C++17** Programming Language in **Embedded** Environment
 * NASA JPL's **F' (*F Prime*)** Flight Software Framework
 * **GoogleTest** Unit Test Framework
   
@@ -140,7 +141,7 @@ This repository spotlights how I contributed to MEMESat-1 by developing the enti
 ![UML Use Case Diagram](doc/README/img/UseCase_Diagram.png)
 
 ## Design
-Draft:
+<!-- Draft:
 * Component Model
   * UML Component Diagram of all components: Internal + externally used ones
     * Transceiver
@@ -164,22 +165,22 @@ Draft:
 
   * Receive a message to store on the satellite
   * Downlink recently stored messages from the satellite
-* 
----
+*  -->
 ### Component Model
 The system is realized by introducing three new components and by interfacing with three components of the F' framework. 
 
-UML component diagram:
-![UserMessage System UML Component Diagram](doc/README/UserMessageSystemUMLComponentDiagram.png)
+**UML component diagram**
+
+![UserMessage System UML Component Diagram](doc/README/img/UserMessageSystemUMLComponentDiagram.png)
 <!-- TODO: Remove white edge + Remove Title -->
 
-The following three components have been custom developed for this system:
+The following three components have been custom-developed for this system:
    
   * **MessageStorage** (also see the [full component specification](doc/MessageStorage/SoftwareDesignDocumentation.md))
 
     Component with one port to accept a `UserMessage` to store it on the file system and another port to load a given number of recently stored `UserMessage`s.
 
-    It is a separate component because it encapsulates the general logic for storing `Fw::Serializable` C++ objects in a file on the file system using the Operating System Abstraction Layer (OSAL) of F'. Thus, the component can easily be adapted to additionally store other types than only `UserMessage`s in the future.
+    It is a separate component because it encapsulates the general logic for storing `Fw::Serializable` C++ objects in a file on the file system using the Operating System Abstraction Layer (OSAL) of F'. Thus, the component can easily be adapted to additionally store other types than only `UserMessage`s on the satellite's file system in the future.
 
 * **Moderator** (also see the [full component specification](doc/Moderator/SoftwareDesignDocument.md))
 
@@ -200,7 +201,7 @@ The system uses the following three framework components to integrate its functi
   <!-- TODO: Is Svc.Framer correct? -->
 
 ### Dynamic Model
-The following UML sequence diagrams exemplarily outline how the defined components interact to fulfill the two use cases of receiving and downlinking messages. The custom-developed components are highlighted in orange.
+The following UML sequence diagrams exemplarily outline how the defined components interact to fulfill the two use cases of posting and requesting messages. The custom-developed components are highlighted in orange.
 
 **Receive a message to store on the satellite**
 
@@ -210,44 +211,74 @@ Two `UserMessage`s are sent to the satellite after each other. The first one is 
 
 **Downlink recently stored messages from the satellite**
 
-The system downlinks recently stored `UserMessage`s twice. The first time is response to a request via a command from the ground station. The second one is triggered by an ActiveRateGroup which calls the Transceiver's `scheduleDownlink` port.  
+The system downlinks recently stored `UserMessage`s twice. The first time is in response to a request via a command from the ground station. The second one is triggered by an ActiveRateGroup which calls the Transceiver's `scheduleDownlink` port.  
 
 ![UML Sequence Diagram for downlinking recent messages]()
-
-
-## Installation
-
-Also provide System Requirements
-- Must use an operating system for which an implementation for the Operating Systems Abstraction Layer (OSAL) of F' is provided. F' comes with such an implementation for Linux out-of-the-box. Implementations for other operating systems, like VWorks, ... # TODO
-- A C++17 compiler
-
-What are the steps required to install your project? Provide a step-by-step description of how to get the development environment running.
-
-<!-- TODO: Can profit from fprime installation guide by including some of their instructions + finally linking to them -->
-
-## Usage
-
-Provide instructions and examples for use. Include screenshots as needed.
-
-To add a screenshot, create an `assets/images` folder in your repository and upload your screenshot to it. Then, using the relative filepath, add it to your README using the following syntax:
-
-    ```md
-    ![alt text](assets/images/screenshot.png)
-    ```
-Draft:
-* How to use it in an existing F' Flight Software System? Developers that wish to use the code of this repository can swap out the implementations for these components to fit the UserMessage system into their own  F' flight software system (see [Used Framwork Components](#component-model)).
-
-### Example: Send Message to Satellite
-Make sure to include at least one nicely visualized examples / tutorial.
-
-### Example: Receive Message from Satellite
-Make sure to include at least one nicely visualized examples / tutorial.
 
 ## Tests
 
 Go the extra mile and write tests for your application. Then provide examples on how to run them here.
 
 TODO: Unit tests provide ..% line coverage
+
+
+### Example: Send Message to Satellite
+Make sure to include at least one nicely visualized example/tutorial.
+TODO: Move further up if I do this
+
+### Example: Receive Message from Satellite
+Make sure to include at least one nicely visualized example/tutorial.
+
+
+## How To Use This Software
+
+### Integration With An Existing F' Flight Software System
+The BBSMessage system implementation in this repository is not meant to be a stand-alone flight software. Instead, it is a module that can be added to any flight software system written in F'. 
+
+Other developers can use the implementation provided in this repository by adding the BBSMessage module to their code base and connecting the BBSMessage components' ports to their flight software (see [Used Framework Components](#component-model)).
+
+### Installation
+**Meet the system requirements**
+   1. Linux or macOS operating system
+   2. git
+   3. [CMake 3.16](https://cmake.org/download/) or newer. CLI tool must be available on the system path.
+   4. CLang or GCC compiler
+   5. [Python 3.7+](https://www.python.org/downloads/), virtual environments, and PIP
+   
+**Install F' v3.1.0**
+
+1. Setup a virtual environment for F' and activate it:
+  Choose a location to generate a virtual environment. This can be any path the user has read and write access to. The example uses th path `$HOME/fprime-venv`.
+
+  ```
+  python3 -m venv $HOME/fprime-venv
+  source $HOME/fprime-venv/bin/activate
+  pip install -U setuptools setuptools_scm wheel pip
+  ```
+
+2. Clone and install F':
+Clone their [core repository](https://github.com/nasa/fprime).
+F´ ships with a `requirements.txt` file enumerating the tools F´ uses and their specific tested versions. 
+
+```
+git clone https://github.com/nasa/fprime
+git checkout v3.1.0
+pip install -r fprime/requirements.txt
+```
+
+**Install SpacePosts**
+
+Switch into the cloned `fprime` repository directory and clone the SpacePosts repository into the `SpacePosts/` directory. You may wish to create a Git submodule for it.
+```
+cd fprime
+git clone https://github.com/mabdn/fprime-spaceposts SpacePosts
+```
+
+**Test the installation and build your deployment**
+
+Follow the typical steps to test and build and installation in F' (see [F' Installation Guide](https://github.com/nasa/fprime/blob/v3.1.0/docs/INSTALL.md)).
+
+Then, connect your F' flight software to the SpacePosts topology (see [Integration With An Existing F' Flight Software System](#integration-with-an-existing-f-flight-software-system)). If you do not have your own F' flight software, you can always use the `Ref` flight software example deployment provided by the F' framework.
 
 ## Credits
 
