@@ -3,9 +3,24 @@
 
 ## Summary
 
-An implementation to receive, moderate, store, and send end-user text messages (called **BBSMessages**) on a satellite in embedded C++ using NASA JPL's F' flight software framework.
+An implementation to receive, moderate, store, and send end-user text messages (called **SpacePosts**) on a satellite in embedded C++ using NASA JPL's F' flight software framework.
 
 It enables users to publish their own text messages to a satellite and receive all other users' published text messages from that satellite.
+
+<p align="center" float="left">
+  <a href="#">
+  <img src="doc/README/img/SpacePorts_Logo_Squared.png" height="166px">
+  </a>
+  &nbsp;
+  &nbsp;
+  &nbsp;
+  &nbsp;
+  &nbsp;
+  &nbsp;
+  <a href="https://ieeexplore.ieee.org/document/10116009" target="_blank">
+  <img src="doc/README/img/MEMESAT-1_Badge.png" width="170px">
+  </a>
+</p>
 
 ## Table of Contents
 - [F' UserMessage Extension](#f-usermessage-extension)
@@ -13,8 +28,8 @@ It enables users to publish their own text messages to a satellite and receive a
   - [Table of Contents](#table-of-contents)
   - [Description](#description)
     - [Experience Gained From This Project](#experience-gained-from-this-project)
-    - [The Concept of BBSMessages](#the-concept-of-bbsmessages)
-    - [Realization of BBSMessages](#realization-of-bbsmessages)
+    - [The Concept of SpacePosts](#the-concept-of-spaceposts)
+    - [Realization of SpacePosts](#realization-of-spaceposts)
   - [Technologies](#technologies)
     - [What is F'?](#what-is-f)
   - [Features](#features)
@@ -37,16 +52,7 @@ It enables users to publish their own text messages to a satellite and receive a
 
 This repository presents one part of my contribution to the **[MEMESat-1](https://ieeexplore.ieee.org/document/10116009)** satellite during a 7-week full-time (40h/week) position as a **Flight Software Engineer** in the Command & Data Handling (CDH) team at the University of Georgia's **[Small Satellite Research Laboratory](http://www.smallsat.uga.edu/).**
 
-<p align="center" float="left">
-  <a href="https://ieeexplore.ieee.org/document/10116009" target="_blank">
-  <img src="doc/README/img/MEMESAT-1_Badge.png" width="200px">
-  </a>
-  &nbsp;
-  &nbsp;
-  &nbsp;
-  &nbsp;
-  &nbsp;
-  &nbsp;
+<p align="center">
   <a href="http://www.smallsat.uga.edu/" target="_blank">
   <img src="doc/README/img/SSRL_Logo_Full.png" width="400px">
   </a>
@@ -61,20 +67,20 @@ This repository presents one part of my contribution to the **[MEMESat-1](https
 - **Elicited the requirements** for the SpacePosts software product by discussing the desired functionality and security needs with [MEMESat-1](http://www.smallsat.uga.edu/missions)'s **mission leadership** and the [funding organization](https://letsgo2space.com/)'s **CEO**, resulting in a product that closely conforms with the satellite's mission goals
 - **Documented the engineering process** extensively on **X pages** with **X lines of documentation per developed line of code** by establishing software engineering best practices in the embedded engineering team, resulting in **improved knowledge transfer** within the team
 
-### The Concept of BBSMessages
+### The Concept of SpacePosts
 
-BBSMessages realize a public [bulletin board](https://en.wikipedia.org/wiki/Bulletin_board_system) for text messages on a satellite in space. Anyone with amateur radio equipment shall be able to interact with the bulletin board. Essentially, users can post BBSMessages to the board and read all BBSMessages from the board. A BBSMessage consists of a simple text message, just like a Tweet on Twitter.
+SpacePosts realize a public [bulletin board](https://en.wikipedia.org/wiki/Bulletin_board_system) for text messages on a satellite in space. Anyone with amateur radio equipment shall be able to interact with the bulletin board. Essentially, users can post SpacePosts to the board and read all SpacePosts from the board. A SpacePost consists of a simple text message, just like a Tweet on Twitter.
 
-For everyone without amateur radio equipment, there is a website that allows them to publish and read BBSMessages from the board through a ground station that handles transmitting and receiving.
+For everyone without amateur radio equipment, there is a website that allows them to publish and read SpacePosts from the board through a ground station that handles transmitting and receiving.
 
-### Realization of BBSMessages
+### Realization of SpacePosts
 
-In fact, BBSMessages are not only a theoretical concept but they are being realized in the form of the **[MEMESat-1](https://doi.org/10.1109/AERO55745.2023.10116009)** CubeSat satellite at the **[University of Georgia's Small Satellite Research Laboratory](https://letsgo2space.com/talk-to-satellites/).**
+In fact, SpacePosts are not only a theoretical concept but they are being realized in the form of the **[MEMESat-1](https://doi.org/10.1109/AERO55745.2023.10116009)** CubeSat satellite at the **[University of Georgia's Small Satellite Research Laboratory](https://letsgo2space.com/talk-to-satellites/).**
 
 MEMESat-1 is set to be launched into space in cooperation with NASA in Q2-2024. It is build for a [nonprofit organization](https://letsgo2space.com/memesatellite-1/) which will use the satellite in education workshops for high school students.
 
 
-This repository spotlights how I contributed to MEMESat-1 by developing the entire satellite-side software system for BBSMessages on MEMESat-1. I defined, designed, implemented, and tested this software as one part of my work during a 7-week full-time (40h/week) position as a Flight Software Engineer in the Command & Data Handling (CDH) team.
+This repository spotlights how I contributed to MEMESat-1 by developing the entire satellite-side software system for SpacePosts on MEMESat-1. I defined, designed, implemented, and tested this software as one part of my work during a 7-week full-time (40h/week) position as a Flight Software Engineer in the Command & Data Handling (CDH) team.
 
 <p align="center">
   <a href="http://www.smallsat.uga.edu/" target="_blank">
@@ -95,9 +101,9 @@ This repository spotlights how I contributed to MEMESat-1 by developing the enti
 
 ### Purpose and Environment
 
-**Purpose**: The BBSMessage system enables users to publish their own BBSMessage to a satellite and receive all other users' published BBSMessages from that satellite.
+**Purpose**: The SpacePost system enables users to publish their own SpacePost to a satellite and receive all other users' published SpacePosts from that satellite.
 
-**Product Environment**: The BBSMessage system will be deployed on the Raspberry Pi CM4 of the [MEMESat-1](https://ieeexplore.ieee.org/document/10116009) CubeSat satellite.
+**Product Environment**: The SpacePost system will be deployed on the Raspberry Pi CM4 of the [MEMESat-1](https://ieeexplore.ieee.org/document/10116009) CubeSat satellite.
 
 ### High-level Functionality (Functional Requirements)
 
@@ -205,9 +211,9 @@ Make sure to include at least one nicely visualized example/tutorial.
 ## How To Use This Software
 
 ### Integration With An Existing F' Flight Software System
-The BBSMessage system implementation in this repository is not meant to be a stand-alone flight software. Instead, it is a module that can be added to any flight software system written in F'. 
+The SpacePost system implementation in this repository is not meant to be a stand-alone flight software. Instead, it is a module that can be added to any flight software system written in F'. 
 
-Other developers can use the implementation provided in this repository by adding the BBSMessage module to their code base and connecting the BBSMessage components' ports to their flight software (see [Used Framework Components](#component-model)).
+Other developers can use the implementation provided in this repository by adding the SpacePost module to their code base and connecting the SpacePost components' ports to their flight software (see [Used Framework Components](#component-model)).
 
 ### Installation
 **Meet the system requirements**
