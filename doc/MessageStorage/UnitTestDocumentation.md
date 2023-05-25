@@ -107,39 +107,9 @@ This list outlines all the unit test that have been implemented. For more detail
 **Black-Box Test**
 | Test Case ID | Name | Steps | Variable Test Data | Realization |
 | --- | --- | --- | --- | --- |
-| UT-STO-010 | Test the assigned index to stored messages based on different state of the storage directory | 1. Setup storage directory with certain existing files, 2. Call component to store message, 3. Check that the assigned index to the message from what is reported via events and telemetry | directory does or does not exist,
-number of stored BBS messages,
-indices of the stored BBS messages,
-number of other files,
-naming of other files | Tester::testStoreIndex(),
-Tester::testStoreIndexDirDoesNotExist() |
-| UT-STO-020 | Test storing a message based on the message’s text content | 1. Call component input port to store message, 2. Check that a corresponding file has been correctly stored on disk by reading and checking the created file | Message text’s length, message text’s content, storage directory states from UT-STO-010 | Tester::testStoreMessageText(),
- |
-| UT-STO-030 | Test loading a message from a given index based on whether that index exists | 1. Call component input port to load a message from the given index
-2. Check whether loading succeeds or fails from the emitted events and telemetry | Index of message to load,
-storage directory states from UT-STO-010
- | Tester::testLoadFromExistingIndex(),
-testLoadFromNonExistingIndex() |
-| UT-STO-040 | Test loading a message from a given index based on the validity of the file on disk referenced by the index | 1. Place a consciously formatted file for a BBS message on disk
-2. Call component input port to load a message from the index
-3. If invalid file: Check whether loading fails for the specific reason for which it should by checking the emitted events and telemetry
-If valid file: Check whether returned message is the one that was stored in the message file | Message’s meta data,
-Message text’s length, 
-Message text’s content,
-storage directory states from UT-STO-010 | Tester::testLoadValidBBSFileFromIndex(),
-Tester::testLoadInvalidBBSFileFromIndex() |
-| UT-STO-050 | Test whether loading last N messages selects the most recently stored messages based on different numbers for N | 1. Setup storage directory with certain existing files
-2. Call component input port to load the last N messages
-3. Check whether the loaded messages are the ones that have the most recent indices in specified order  | Number of messages N to load, 
-storage directory states from UT-STO-010 |  |
-| UT-STO-060 | Test loading the last N messages based on the validity of the corresponding message files on disk | 1. Place consciously formatted files for BBS messages on disk as the last N message files
-2. Call component input port to load the last N messages
-3. Check whether invalid messages have been skipped in loading | Per placed message file:
-Message’s meta data,
-Message text’s length, 
-Message text’s content;
-
-Number of messages N to load;
-
-Storage directory states from UT-STO-010;
- |  |
+| UT-STO-010 | Test the assigned index to stored messages based on different state of the storage directory | 1. Setup storage directory with certain existing files, 2. Call component to store message, 3. Check that the assigned index to the message from what is reported via events and telemetry | directory does or does not exist, number of stored BBS messages, indices of the stored BBS messages, number of other files, naming of other files | Tester::testStore-Index(), Tester::testStoreIndex-DirDoesNotExist() |
+| UT-STO-020 | Test storing a message based on the message’s text content | 1. Call component input port to store message, 2. Check that a corresponding file has been correctly stored on disk by reading and checking the created file | Message text’s length, message text’s content, storage directory states from UT-STO-010 | Tester::testStore-MessageText(),|
+| UT-STO-030 | Test loading a message from a given index based on whether that index exists | 1. Call component input port to load a message from the given index, 2. Check whether loading succeeds or fails from the emitted events and telemetry | Index of message to load, storage directory states from UT-STO-010 | Tester::testLoadFrom-ExistingIndex(), testLoadFromNon-ExistingIndex() |
+| UT-STO-040 | Test loading a message from a given index based on the validity of the file on disk referenced by the index | 1. Place a consciously formatted file for a BBS message on disk, 2. Call component input port to load a message from the index, 3. If invalid file: Check whether loading fails for the specific reason for which it should by checking the emitted events and telemetry. If valid file: Check whether returned message is the one that was stored in the message file | Message’s meta data, Message text’s length, Message text’s content, storage directory states from UT-STO-010 | Tester::testLoadValid-BBSFileFromIndex(), Tester::testLoadInvalid-BBSFileFromIndex() |
+| UT-STO-050 | Test whether loading last N messages selects the most recently stored messages based on different numbers for N | 1. Setup storage directory with certain existing files, 2. Call component input port to load the last N messages, 3. Check whether the loaded messages are the ones that have the most recent indices in specified order  | Number of messages N to load, storage directory states from UT-STO-010 |  |
+| UT-STO-060 | Test loading the last N messages based on the validity of the corresponding message files on disk | 1. Place consciously formatted files for BBS messages on disk as the last N message files, 2. Call component input port to load the last N messages, 3. Check whether invalid messages have been skipped in loading | Per placed message file: Message’s meta data, Message text’s length, Message text’s content; Number of messages N to load; Storage directory states from UT-STO-010; |  |
