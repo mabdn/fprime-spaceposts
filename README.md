@@ -1,33 +1,6 @@
 # F' UserMessage Extension
 <!-- TODO: Shields? -->
 
-## Purpose
-Present and explains my work on MEMESat BBS Message Storage component.
-
-Target Audience:
-- Alice: Recruiter at XYZ Autos GmBH. HR Abteilung. Kaum Fachwissen
-- Bob: Software Engineering Lead at Munich Dynamics. Softwareengineering und Robotikfachwissen
-- Charly: UGA undergrad 2nd year. CE major. Team Member at SSRL that needs to fix a bug in my code after I have left.
-- Danny: UGA undergrad 2nd year. CS major. Team Member at SSRL that needs to write a component which uses mine.
-
-## Questions to answer
-
-- Alice: What was the project about?
-- Alice: What skills did he learn that apply to our job offering?
-- Alice: Why was it challenging?
-- Bob: What is F'?
-- Bob: What technical challenges did he solve?
-- Bob: What technologies did he use? Do they match the one we use?
-- Bob: Does he have good coding skills and does he follow software engineering best practices X
-- Bob: Is his documentation easy to understand? X
-- Charly: What do the different parts of the code do?
-- Charly: Why is X implemented like that and not like ...?
-- Charly: What can I change without breaking the design or functionality?
-- Danny: How do I use the component?
-- Danny: What is the component supposed to do? What is it for?
-
----
-
 ## Summary
 
 An implementation to receive, moderate, store, and send end-user text messages (called **BBSMessages**) on a satellite in embedded C++ using NASA JPL's F' flight software framework.
@@ -36,8 +9,6 @@ It enables users to publish their own text messages to a satellite and receive a
 
 ## Table of Contents
 - [F' UserMessage Extension](#f-usermessage-extension)
-  - [Purpose](#purpose)
-  - [Questions to answer](#questions-to-answer)
   - [Summary](#summary)
   - [Table of Contents](#table-of-contents)
   - [Description](#description)
@@ -66,6 +37,21 @@ It enables users to publish their own text messages to a satellite and receive a
 
 This repository presents one part of my contribution to the **[MEMESat-1](https://ieeexplore.ieee.org/document/10116009)** satellite during a 7-week full-time (40h/week) position as a **Flight Software Engineer** in the Command & Data Handling (CDH) team at the University of Georgia's **[Small Satellite Research Laboratory](http://www.smallsat.uga.edu/).**
 
+<p align="center" float="left">
+  <a href="https://ieeexplore.ieee.org/document/10116009" target="_blank">
+  <img src="doc/README/img/MEMESAT-1_Badge.png" width="200px">
+  </a>
+  &nbsp;
+  &nbsp;
+  &nbsp;
+  &nbsp;
+  &nbsp;
+  &nbsp;
+  <a href="http://www.smallsat.uga.edu/" target="_blank">
+  <img src="doc/README/img/SSRL_Logo_Full.png" width="400px">
+  </a>
+</p>
+
 ### Experience Gained From This Project
 
 <!-- TODO: Add numbers. Make action word + quantity bold -->
@@ -82,27 +68,12 @@ For everyone without amateur radio equipment, there is a website that allows the
 
 ### Realization of BBSMessages
 
-In fact, BBSMessages are not only a theoretical concept but they are being realized in the form of the **[MEMESat-1](https://ieeexplore.ieee.org/document/10116009)** CubeSat satellite at the **[University of Georgia's Small Satellite Research Laboratory](http://www.smallsat.uga.edu/).**
+In fact, BBSMessages are not only a theoretical concept but they are being realized in the form of the **[MEMESat-1](https://doi.org/10.1109/AERO55745.2023.10116009)** CubeSat satellite at the **[University of Georgia's Small Satellite Research Laboratory](https://letsgo2space.com/talk-to-satellites/).**
 
-MEMESat-1 is set to be launched into space in cooperation with NASA in Q2-2024.
+MEMESat-1 is set to be launched into space in cooperation with NASA in Q2-2024. It is build for a [nonprofit organization](https://letsgo2space.com/memesatellite-1/) which will use the satellite in education workshops for high school students.
 
 
 This repository spotlights how I contributed to MEMESat-1 by developing the entire satellite-side software system for BBSMessages on MEMESat-1. I defined, designed, implemented, and tested this software as one part of my work during a 7-week full-time (40h/week) position as a Flight Software Engineer in the Command & Data Handling (CDH) team.
-
-<p align="center" float="left">
-  <a href="https://ieeexplore.ieee.org/document/10116009" target="_blank">
-  <img src="doc/README/img/MEMESAT-1_Badge.png" width="200px">
-  </a>
-  &nbsp;
-  &nbsp;
-  &nbsp;
-  &nbsp;
-  &nbsp;
-  &nbsp;
-  <a href="http://www.smallsat.uga.edu/" target="_blank">
-  <img src="doc/README/img/SSRL_Logo_Full.png" width="400px">
-  </a>
-</p>
 
 <p align="center">
   <a href="http://www.smallsat.uga.edu/" target="_blank">
@@ -281,14 +252,9 @@ Follow the typical steps to test and build and installation in F' (see [F' Insta
 Then, connect your F' flight software to the SpacePosts topology (see [Integration With An Existing F' Flight Software System](#integration-with-an-existing-f-flight-software-system)). If you do not have your own F' flight software, you can always use the `Ref` flight software example deployment provided by the F' framework.
 
 ## Credits
+Developed based on the NASA's [F' Flight Software Framework](https://github.com/nasa/fprime).
 
-List your collaborators, if any, with links to their GitHub profiles.
-
-If you used any third-party assets that require attribution, list the creators with links to their primary web presence in this section.
-
-If you followed tutorials, include links to those here as well.
-* Link fprime
-* Purpose-built for the requirements of a satellite mission at the University of Georgia's [Small Satellite Research Laboratory](http://www.smallsat.uga.edu/) (SSRL)
+Purpose-built as a part of the [MEMESat-1](https://ieeexplore.ieee.org/document/10116009) satellite mission at the University of Georgia's [Small Satellite Research Laboratory](http://www.smallsat.uga.edu/) (SSRL).
 
 
 ## License
