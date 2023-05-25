@@ -32,7 +32,7 @@ The component emits an event every time
 
 The name in the brackets is the type of the emitted event. For every cause of an event, a different type is used. 
 
-Furthermore, the component emits additional events and telemetry upon the success or failure of some internal operations. For a full definition, refer to `SpacePosts/MessageStorage/MessageStorage.fpp`.
+Furthermore, the component emits additional events and telemetry upon the success or failure of some internal operations. For a full definition, refer to `SpacePosts/MessageStorage/MessageStorage.fpp`//TODO link.
 
 
 ## Dependencies
@@ -123,7 +123,7 @@ To write a message to a file, the message type must be serialized into a raw byt
 
 ## Test Summary
 TODO numbers
-- The BBSMessageStorage component has been unit tested to X% line coverage and X% branch coverage.
+- The MessageStorage component has been unit tested to X% line coverage and X% branch coverage.
 - The unit tests follow the data-driven unit test style.
 - The unit tests are implemented with the GoogleTest testing library.
 - Both black-box and white-box unit tests are used to make the unit tests as independent from the component as possible while still covering all internal error-handling branches.

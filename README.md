@@ -13,7 +13,7 @@ It enables users to publish their own text messages to a satellite and receive a
 
 <p align="center" float="left">
   <a href="#">
-  <img src="doc/README/img/SpacePorts_Logo_Squared.png" height="166px">
+  <img src="doc/README/img/SpacePosts_Logo_Wide.png" height="166px">
   </a>
   &nbsp;
   &nbsp;
@@ -120,41 +120,17 @@ This repository spotlights how I contributed to MEMESat-1 by developing the enti
     - Send the messages to earth
 
 ### UML Use Case Diagram
-![UML Use Case Diagram](doc/README/img/UseCase_Diagram.png)
+![UML Use Case Diagram](doc/README/img/UseCaseDiagram.png)
 
 ## Design
-<!-- Draft:
-* Component Model
-  * UML Component Diagram of all components: Internal + externally used ones
-    * Transceiver
-    * Moderator
-    * MessageStorage
-    * * 
-    * ActiveRateGroup
-    * CommandDispatcher
-    * Framer??
-  * Brief description of every component + link to their sdd
-  * Design Decisions
-    * Separation in components
-      * MessageStorage as a separate component because it encapsulates general logic for storing `FW::Serializable` C++ objects to a file on the file system => Can be easily adapted to also storing other things than messages in the future
-      * Moderator as separate component with the same interface (= same input port) as Message => Can be optionally plugged in between Transceiver and MessageStorage without neither Transceiver nor the MessageStorage knowing about it 
-      * Transceiver encapsulates how loading and storing can be triggered => Can swap out the Transceiver with a different implementation to change how the satellite communicates messages with users on the ground
-    * 
 
-* Dynamic Model 
-  
-  The following UML sequence diagrams examplarily outline how the defined components interact to fulfill the two use-cases of receiving and downlinking messages.
-
-  * Receive a message to store on the satellite
-  * Downlink recently stored messages from the satellite
-*  -->
 ### Component Model
 The system is realized by introducing three new components and by interfacing with three components of the F' framework. 
 
-**UML component diagram**
+**UML Component Diagram**
 
-![UserMessage System UML Component Diagram](doc/README/img/UserMessageSystemUMLComponentDiagram.png)
-<!-- TODO: Remove white edge + Remove Title -->
+![UserMessage System UML Component Diagram](doc/README/img/ComponentDiagram.png)
+
 
 The following three components have been custom-developed for this system:
    
@@ -185,17 +161,17 @@ The system uses the following three framework components to integrate its functi
 ### Dynamic Model
 The following UML sequence diagrams exemplarily outline how the defined components interact to fulfill the two use cases of posting and requesting messages. The custom-developed components are highlighted in orange.
 
-**Receive a message to store on the satellite**
+**Receive a SpacePost to store on the satellite**
 
 Two `UserMessage`s are sent to the satellite after each other. The first one is discarded during moderation, the second one passes moderation.
 
-![UML Sequence Diagram for receiving a message]()
+![UML Sequence Diagram for receiving a message](doc/README/img/Receive_SequenceDiagram.png)
 
-**Downlink recently stored messages from the satellite**
+**Send recently stored SpacePosts from the satellite**
 
 The system downlinks recently stored `UserMessage`s twice. The first time is in response to a request via a command from the ground station. The second one is triggered by an ActiveRateGroup which calls the Transceiver's `scheduleDownlink` port.  
 
-![UML Sequence Diagram for downlinking recent messages]()
+![UML Sequence Diagram for downlinking recent messages](doc/README/img/Send_SequenceDiagram.png)
 
 ## Tests
 
