@@ -1,6 +1,13 @@
 # Moderator Component Documentation
 ## Summary
 The `Moderator` component is a passive F' component that decides whether received messages are stored or discarded based on a set of moderation rules.
+
+
+## Necessity
+An onboard moderation is necessary because the satellite is supposed to receive messages from HAM radio users (see [Concepts of SpacePosts](../../README.md#the-concept-of-spaceposts)). These users send their messages to the satellite using their own radio equipment. Consequently, there is no way to check the content of their message prior to receiving them on the satellite.
+
+However, one of the SpacePost system's requirements is to ensure that no inappropriate messages published by the satellite. We chose to fulfill this requirement by rejecting an inappropriate message when it is received and thus before it is stored on the satellite.
+
 ## Requirements
 ### Functional Requirements
 Requirement | Description | Verification Method
@@ -20,10 +27,6 @@ Requirement | Description | Verification Method
 ----------- | ----------- | -------------------
 NF-MOD-010 | The component shall be highly adaptable and extendible to different and new moderation criteria. | Manual code review
 
-## Necessity
-An onboard moderation is necessary because the satellite is supposed to receive messages from HAM radio users (see [Concepts of SpacePosts](../../README.md#the-concept-of-spaceposts)). These users send their messages to the satellite using their own radio equipment. Consequently, there is no way to check the content of their message prior to receiving them on the satellite.
-
-However, one of the SpacePost system's requirements is to ensure that no inappropriate messages published by the satellite. We chose to fulfill this requirement by rejecting an inappropriate message when it is received and thus before it is stored on the satellite.
 
 ## Interface to Other Components
 To use the `Moderator`, it needs to be placed on a connection from the `Transceiver` to the `MessageStorage`. The `Moderator` will take in all received messages on its input port and only output those that pass the moderation check.
