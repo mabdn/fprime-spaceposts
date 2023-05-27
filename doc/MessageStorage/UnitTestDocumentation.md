@@ -1,8 +1,7 @@
 # BBSMessageStorage Unit Test Documentation
 
 ## Summary
-TODO numbers
-- The BBSMessageStorage component has been unit tested to X% line coverage and X% branch coverage.
+- The BBSMessageStorage component has been unit tested to 100% line coverage and 91% branch coverage.
 - The unit tests follow the data-driven unit test style.
 - The unit tests are implemented with the GoogleTest testing library.
 - Both black-box and white-box unit tests are used to make the unit tests as independent from the component as possible while still covering all internal error-handling branches.
@@ -16,7 +15,9 @@ TODO numbers
   - [How To Navigate The Unit Test Code](#how-to-navigate-the-unit-test-code)
   - [Test Strategy](#test-strategy)
   - [Test Environment](#test-environment)
-  - [List of Test Cases](#list-of-test-cases)
+  - [Table of Test Case Groups](#table-of-test-case-groups)
+    - [Black-Box Tests](#black-box-tests)
+    - [White-Box Tests](#white-box-tests)
 
 
 ## Test Success Criteria
@@ -28,16 +29,20 @@ TODO numbers
 ## How To Navigate The Unit Test Code
 
 - The test logic is defined in the (Tester.hpp)[//TODO] and implemented in the (Tester.cpp)[//TODO].
-- The test data is defined in the (main.cpp)[//TODO] and (TODO.hpp)[//TODO].
-    - For unit tests with a small set of test data values, one test case is defined for every test data value combination as a one-liner with GoogleTest's `TEST_P()` syntax in (main.cpp)[//TODO]. For example, see //TODO. This makes the tests more readable.
-    - For unit tests with a large set of test data values, a GoogleTest parameterized test fixture class is used to define a single test with `TEST_P()`. This test is then executed once for every test data value provided by the test fixture class. The fixture class's test data is defined in (TODO.hpp)[//TODO].
-- An object-oriented model of message files and the storage directory facilitate simple unit test code. It is defined in //TODO
+- The test data is defined in the (main.cpp)[//TODO] and (data/StorageStateProvider.hpp)[//TODO].
+    - For unit tests with a small set of test data values, one test case is defined for every test data value combination as a one-liner with GoogleTest's `TEST_P()` syntax in (main.cpp)[//TODO].
+    For example, see (UT-STO-020's implementation)[//TODO]. This makes the tests more readable.
+
+    - For unit tests with a large set of test data values, a GoogleTest parameterized test fixture class is used to define a single test with `TEST_P()`. This test then generates one test case for every test data value provided by the test fixture class. The fixture class's test data is defined in (data/StorageStateProvider.hpp)[//TODO].
+  
+- An object-oriented model of message files and the storage directory facilitates simple unit test code. 
+  It is defined in (model/)[//TODO]
 
 ## Test Strategy
 
 **Data-Driven Unit Testing**
 
-The tests separate the logic that is tested from the data that is used for the test. The logic is defined in a parameterized test method (in the (Tester.hpp)[//TODO]) while the test data is defined in a test data provider class (in the (TODO.hpp)[//TODO]). A single test method is then executed once for every combination of test parameters provided by the test data provider class.
+The tests separate the logic that is tested from the data that is used for the test. The logic is defined in a parameterized test method (in the (Tester.hpp)[//TODO]) while the test data is defined in a test data provider class (the (StorageStateProvider)[//TODO]). Every parameterized test method is then executed once for every combination of test parameters provided by the test data provider class.
 
 To achieve high path and branch coverage, the data-driven approach makes sense for the `MessageStorage` component. As the component is all about storing and loading data, its test cases rely on checking the component's behavior for many different messages.
 
@@ -45,7 +50,7 @@ To achieve high path and branch coverage, the data-driven approach makes sense f
 
 First, I searched for all black-box test cases that can be derived from the component's public interface. I **partitioned** the parameter domains **into** **equivalence classes** based on the domain limits and the intuitively assumed limits of processing.
 
-Next, I developed **Boundary Value Analysis** tests for these partitions. This led to the black-box unit tests realized for the `MessageStorage` component (see [Black-Box Test Cases](//TODO)).
+Next, I developed **Boundary Value Analysis** tests for these partitions. This led to the black-box unit tests realized for the `MessageStorage` component (see [Black-Box Test Cases](#black-box-tests)).
 
 For every partition boundary, the value just before the boundary, the boundary value, and the value just past the boundary are tested. Additionally, for large equivalence classes, one random value from inside the partition is tested.
 
@@ -80,7 +85,7 @@ TEST_P(BBSMessageStorageTest, TestStoreMessageTextNominalMaxMessageSize)
 
 The black-box Boundary Value Analysis tests provide good line and branch coverage of the nominal component behavior. However, they cannot cover all error cases as, for file system interactions, there are a lot more possible errors beyond invalid input data.
 
-Consequently, I developed a set of **control-flow-oriented tests** that uses white-box knowledge of which branches are taken under which error conditions. The tests intercept the component's file system interactions and consciously inject errors to test the error-handling branches in the source code of the component. Therefore, these tests can increase the line coverage over the black-box tests (see [White-Box Test Cases](//TODO)).
+Consequently, I developed a set of **control-flow-oriented tests** that uses white-box knowledge of which branches are taken under which error conditions. The tests intercept the component's file system interactions and consciously inject errors to test the error-handling branches in the source code of the component. Therefore, these tests can increase the line coverage over the black-box tests (see [White-Box Test Cases](#white-box-tests)).
 
 **Independence Assumption**
 
@@ -98,11 +103,11 @@ The BBSMessageStorage component is tested together with the Operating System Abs
 
 The unit tests do not follow the embedded coding style as the source code does. This decision is advisable because the unit tests will not be executed in an embedded environment. Thus, modern C++ features can be used to reduce code complexity.
 
-## List of Test Cases
+## Table of Test Case Groups
 
 This list outlines all the unit test that have been implemented. For more detailed explanations of how the unit tests are realized, refer to the test method comments in Tester.hpp //TODO link.
 
-**Black-Box Test**
+### Black-Box Tests
 | Test Case ID | Name | Steps | Variable Test Data | Realization |
 | --- | --- | --- | --- | --- |
 | UT-STO-010 | Test the assigned index to stored messages based on different state of the storage directory | 1. Setup storage directory with certain existing files, 2. Call component to store message, 3. Check that the assigned index to the message from what is reported via events and telemetry | directory does or does not exist, number of stored BBS messages, indices of the stored BBS messages, number of other files, naming of other files | Tester::testStore-Index(), Tester::testStoreIndex-DirDoesNotExist() |
@@ -112,8 +117,7 @@ This list outlines all the unit test that have been implemented. For more detail
 | UT-STO-050 | Test whether loading last N messages selects the most recently stored messages based on different numbers for N | 1. Setup storage directory with certain existing files, 2. Call component input port to load the last N messages, 3. Check whether the loaded messages are the ones that have the most recent indices in specified order  | Number of messages N to load, storage directory states from UT-STO-010 |  |
 | UT-STO-060 | Test loading the last N messages based on the validity of the corresponding message files on disk | 1. Place consciously formatted files for BBS messages on disk as the last N message files, 2. Call component input port to load the last N messages, 3. Check whether invalid messages have been skipped in loading | Per placed message file: Message’s meta data, Message text’s length, Message text’s content; Number of messages N to load; Storage directory states from UT-STO-010; |  |
 
-**************************************White-Box Tests**************************************
-
+### White-Box Tests
 TODO
 
 | Test Case ID | Name | Steps | Variable Test Data | Realization |
