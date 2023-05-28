@@ -13,10 +13,10 @@
 #ifndef Moderator_HPP
 #define Moderator_HPP
 
-#include "Ref/Moderator/ModeratorComponentAc.hpp"
+#include "SpacePosts/Moderator/ModeratorComponentAc.hpp"
 #include "ModerationStrategy.hpp"
 
-namespace Ref
+namespace SpacePosts
 {
 
   class Moderator : public ModeratorComponentBase
@@ -24,7 +24,7 @@ namespace Ref
 
     PRIVATE :
 
-        //! The moderation strategy to use to decide whether to forward or discard a BBS message
+        //! The moderation strategy to use to decide whether to forward or discard a SpacePost
         //!
         //! The components uses the strategy design pattern. An object which implements the `ModerationStrategy`
         //! strategy interface can be injected into the component in its constructor. The `ModerationStrategy`
@@ -41,7 +41,7 @@ namespace Ref
       Moderator(
           const char *const compName,                  /*!< The component name*/
           ModerationStrategy &moderationStrategy /*!< The moderation strategy to use to decide whether to forward
-                                                            or discard a BBS message*/
+                                                            or discard a SpacePost*/
       );
 
       //! Initialize object Moderator
@@ -62,15 +62,15 @@ namespace Ref
 
         //! Handler implementation for moderateMessage
         //!
-        Ref::BBSMessageStorageStatus
+        SpacePosts::MessageStorageStatus
         moderateMessage_handler(
             const NATIVE_INT_TYPE portNum, /*!< The port number*/
-            const Ref::BBSMessage &data    /*!<
-           the BBS message to store
+            const SpacePosts::SpacePost &data    /*!<
+           the SpacePost to store
            */
         );
   };
 
-} // end namespace Ref
+} // end namespace SpacePosts
 
 #endif

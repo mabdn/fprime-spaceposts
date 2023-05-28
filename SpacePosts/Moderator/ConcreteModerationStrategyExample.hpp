@@ -5,7 +5,7 @@
 #include "ModerationStrategy.hpp"
 #include "Moderator.hpp"
 
-namespace Ref
+namespace SpacePosts
 {
     /**
      * @brief Example for what a concrete implementation of the ModerationStrategy interface could look like
@@ -16,7 +16,7 @@ namespace Ref
     {
         public:
             virtual bool checkMessage(
-                const Ref::BBSMessage &message /*!< the BBS message to check */
+                const SpacePosts::SpacePost &message /*!< the SpacePost to check */
             ) override;
     };
 }

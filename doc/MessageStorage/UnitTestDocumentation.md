@@ -1,14 +1,14 @@
-# BBSMessageStorage Unit Test Documentation
+# MessageStorage Unit Test Documentation
 
 ## Summary
-- The BBSMessageStorage component has been unit tested to 100% line coverage and 91% branch coverage.
+- The MessageStorage component has been unit tested to 100% line coverage and 91% branch coverage.
 - The unit tests follow the data-driven unit test style.
 - The unit tests are implemented with the GoogleTest testing library.
 - Both black-box and white-box unit tests are used to make the unit tests as independent from the component as possible while still covering all internal error-handling branches.
 - An object-oriented model is used to simplify the unit tests by modeling helper data and functionality in separate classes.
 
 ## Table of Contents
-- [BBSMessageStorage Unit Test Documentation](#bbsmessagestorage-unit-test-documentation)
+- [MessageStorage Unit Test Documentation](#messagestorage-unit-test-documentation)
   - [Summary](#summary)
   - [Table of Contents](#table-of-contents)
   - [Test Success Criteria](#test-success-criteria)
@@ -59,22 +59,22 @@ For example, in UT-STO-020, the boundaries of the message length are 0 and `MAX_
 From (`main.cpp`)[//TODO]
 
 ``` cpp
-TEST_P(BBSMessageStorageTest, TestStoreMessageTextNominalEmpty)
+TEST_P(MessageStorageTest, TestStoreMessageTextNominalEmpty)
 {
     tester.testStoreMessageText("");
 }
 
-TEST_P(BBSMessageStorageTest, TestStoreMessageTextNominalSingleChar)
+TEST_P(MessageStorageTest, TestStoreMessageTextNominalSingleChar)
 {
     tester.testStoreMessageText("x");
 }
 
-TEST_P(BBSMessageStorageTest, TestStoreMessageTextNominalTypicalMessageSizeAllChars)
+TEST_P(MessageStorageTest, TestStoreMessageTextNominalTypicalMessageSizeAllChars)
 {
     tester.testStoreMessageText(STest::Pick::stringNonNull(STest::Pick::lowerUpper(2, MAX_MSGTEXT_LENGTH - 1)));
 }
 
-TEST_P(BBSMessageStorageTest, TestStoreMessageTextNominalMaxMessageSize)
+TEST_P(MessageStorageTest, TestStoreMessageTextNominalMaxMessageSize)
 {
     tester.testStoreMessageText(STest::Pick::stringNonNull(MAX_MSGTEXT_LENGTH));
 }
@@ -97,7 +97,7 @@ Consequently, the independence assumptions allow for simplifying the unit tests 
 
 **Test together with the OSAL**
 
-The BBSMessageStorage component is tested together with the Operating System Abstraction Layer (OSAL) of F'. We consider the component plus the OSAL as one unit for this component's unit tests. This step is sensible because the OSAL is used internally in the component without any interface for users to change it. Furthermore, the interaction with the real OSAL is an integral part of the component and we can assume the correctness of the OSAL since it is part of the well-tested framework.
+The MessageStorage component is tested together with the Operating System Abstraction Layer (OSAL) of F'. We consider the component plus the OSAL as one unit for this component's unit tests. This step is sensible because the OSAL is used internally in the component without any interface for users to change it. Furthermore, the interaction with the real OSAL is an integral part of the component and we can assume the correctness of the OSAL since it is part of the well-tested framework.
 
 Some white-box tests use a fake for the OSAL to consciously inject errors in the file read or write process. Hence, they can cover additional branches.
 
@@ -112,12 +112,12 @@ This list outlines all the unit tests that have been implemented. For more detai
 ### Black-Box Tests
 | Test Case Group ID | Description | Steps | Variable Test Data | Realization |
 | --- | --- | --- | --- | --- |
-| UT-STO-010 | Test which index is assigned to stored messages based on different states of the storage directory | 1. Set up storage directory with certain existing files. 2. Call component to store message. 3. Check that the assigned index to the message from what is reported via events and telemetry | directory does or does not exist, number of stored BBS messages, indices of the stored BBS messages, number of other files, naming of other files | Tester::testStoreIndex(), Tester::testStoreIndex-DirDoesNotExist() |
+| UT-STO-010 | Test which index is assigned to stored messages based on different states of the storage directory | 1. Set up storage directory with certain existing files. 2. Call component to store message. 3. Check that the assigned index to the message from what is reported via events and telemetry | directory does or does not exist, number of stored SpacePosts, indices of the stored SpacePosts, number of other files, naming of other files | Tester::testStoreIndex(), Tester::testStoreIndex-DirDoesNotExist() |
 | UT-STO-020 | Test storing a message based on the message’s text content | 1. Call component input port to store message. 2. Check that a corresponding file has been correctly stored on disk by reading and checking the created file | Message text’s length, message text’s content, storage directory states from UT-STO-010 | Tester::testStoreMessageText() |
 | UT-STO-030 | Test loading a message from a given index based on whether that index exists | 1. Call component input port to load a message from the given index. 2. Check whether loading succeeds or fails from the emitted events and telemetry | Index of message to load, storage directory states from UT-STO-010 | Tester::testLoadFrom-ExistingIndex(), testLoadFrom-NonExistingIndex() |
-| UT-STO-040 | Test loading a message from a given index based on the validity of the file on disk referenced by the index | 1. Place a consciously formatted file for a BBS message on disk. 2. Call component input port to load a message from the index. 3. If invalid file: Check whether loading fails for the specific reason for which it should by checking the emitted events and telemetry. If valid file: Check whether the returned message is the one that was stored in the message file | Message’s meta data, Message text’s length, Message text’s content, storage directory states from UT-STO-010 | Tester::testLoadValid-BBSFileFromIndex(), Tester::testLoadInvalid-BBSFileFromIndex() |
+| UT-STO-040 | Test loading a message from a given index based on the validity of the file on disk referenced by the index | 1. Place a consciously formatted file for a SpacePost on disk. 2. Call component input port to load a message from the index. 3. If invalid file: Check whether loading fails for the specific reason for which it should by checking the emitted events and telemetry. If valid file: Check whether the returned message is the one that was stored in the message file | Message’s meta data, Message text’s length, Message text’s content, storage directory states from UT-STO-010 | Tester::testLoadValid-SpacePostFileFromIndex(), Tester::testLoadInvalid-SpacePostFileFromIndex() |
 | UT-STO-050 | Test whether loading the last N messages selects the most recently stored messages based on different numbers for N | 1. Set up storage directory with certain existing files. 2. Call component input port to load the last N messages. 3. Check whether the loaded messages are the ones that have the most recent indices in the specified order by checking the emitted events and telemetry | Number of messages N to load, storage directory states from UT-STO-010 | Tester::testLoadLastN-MessagesExisting-InDirectory() |
-| UT-STO-060 | Test loading the last N messages based on the validity of the corresponding message files on disk | 1. Place consciously formatted files for BBS messages on disk as the last N message files. 2. Call component input port to load the last N messages. 3. Check whether invalid messages have been skipped in loading | Per placed message file: Message’s meta data, Message text’s length, Message text’s content; Number of messages N to load; Storage directory states from UT-STO-010; | Tester::testLoadLastN-MessagesGiven-BBSFiles() |
+| UT-STO-060 | Test loading the last N messages based on the validity of the corresponding message files on disk | 1. Place consciously formatted files for SpacePosts on disk as the last N message files. 2. Call component input port to load the last N messages. 3. Check whether invalid messages have been skipped in loading | Per placed message file: Message’s meta data, Message text’s length, Message text’s content; Number of messages N to load; Storage directory states from UT-STO-010; | Tester::testLoadLastN-MessagesGiven-SpacePostFiles() |
 
 ### White-Box Tests
 

@@ -1,9 +1,9 @@
 #include "ConcreteModerationStrategyExample.hpp"
 
-namespace Ref
+namespace SpacePosts
 {
     bool ConcreteModerationStrategyExample::checkMessage(
-        const Ref::BBSMessage &message)
+        const SpacePosts::SpacePost &message)
     {
         bool result{true};
 

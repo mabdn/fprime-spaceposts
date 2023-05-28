@@ -10,12 +10,12 @@
 //
 // ======================================================================
 
-#include <Ref/Moderator/Moderator.hpp>
+#include <SpacePosts/Moderator/Moderator.hpp>
 #include "Fw/Types/BasicTypes.hpp"
 
 #include "ModerationStrategy.hpp"
 
-namespace Ref
+namespace SpacePosts
 {
 
   // ----------------------------------------------------------------------
@@ -46,10 +46,10 @@ namespace Ref
   // Handler implementations for user-defined typed input ports
   // ----------------------------------------------------------------------
 
-  Ref::BBSMessageStorageStatus Moderator ::
+  SpacePosts::MessageStorageStatus Moderator ::
       moderateMessage_handler(
           const NATIVE_INT_TYPE portNum,
-          const Ref::BBSMessage &data)
+          const SpacePosts::SpacePost &data)
   {
     if (this->m_moderationStrategy.checkMessage(data))
     {
@@ -60,10 +60,10 @@ namespace Ref
       this->log_ACTIVITY_HI_MESSAGE_REJECTED();
 
       // Return no error so that the behavior for a component using the input port is the same no matter whether
-      // a Moderator is used inbetween two components' BBSMessageSet ports (e.g. Transceiver and MessageStorage)
+      // a Moderator is used inbetween two components' SpacePostSet ports (e.g. Transceiver and MessageStorage)
       // or not.
-      return Ref::BBSMessageStorageStatus::OK;
+      return SpacePosts::MessageStorageStatus::OK;
     }
   }
 
-} // end namespace Ref
+} // end namespace SpacePosts

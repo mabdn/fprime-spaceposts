@@ -234,7 +234,7 @@ git clone https://github.com/mabdn/fprime-spaceposts SpacePosts
 
 **Test the installation and build your deployment**
 
-Follow the typical steps to test and build and installation in F' (see [F' Installation Guide](https://github.com/nasa/fprime/blob/v3.1.0/docs/INSTALL.md)).
+Follow the typical steps to test and build and installation in F' (see [F' Installation Guide](https://github.com/nasa/fprime/blob/v3.1.0/docs/INSTALL.md)). For example, build the individual SpacePost components.
 
 Then, connect your F' flight software to the SpacePosts topology (see [Integration With An Existing F' Flight Software System](#integration-with-an-existing-f-flight-software-system)). If you do not have your own F' flight software, you can always use the `Ref` flight software example deployment provided by the F' framework.
 

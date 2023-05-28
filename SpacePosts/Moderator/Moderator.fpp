@@ -1,4 +1,4 @@
-module Ref {
+module SpacePosts {
 
   @ Component with one input port and one output port where `UserMessage`s given to the input port must
   @ pass a moderation check to be output on the output port. 
@@ -14,10 +14,10 @@ module Ref {
     # ----------------------------------------------------------------------
 
     @ Perform a moderation check on the given message and output it on the acceptedMessage port iff it passes the check
-    guarded input port moderateMessage: BBSMessageSet
+    guarded input port moderateMessage: SpacePostSet
 
     @ Outputs the messages that passed the moderation check
-    output port acceptedMessage: BBSMessageSet
+    output port acceptedMessage: SpacePostSet
 
     # ----------------------------------------------------------------------
     # Special ports
@@ -39,7 +39,7 @@ module Ref {
     # Events
     # ----------------------------------------------------------------------
 
-    @ Downlinking the last BBSMessages stored on the satellite has failed due to an error while downlinking a message
+    @ Downlinking the last SpacePosts stored on the satellite has failed due to an error while downlinking a message
     event MESSAGE_REJECTED \
         severity activity high \
         format "A message failed the moderation check and has thus been rejected" \
