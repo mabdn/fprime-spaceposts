@@ -28,21 +28,21 @@
 
 ## How To Navigate The Unit Test Code
 
-- The test logic is defined in the (Tester.hpp)[//TODO] and implemented in the (Tester.cpp)[//TODO].
-- The test data is defined in the (main.cpp)[//TODO] and (data/StorageStateProvider.hpp)[//TODO].
-    - For unit tests with a small set of test data values, one test case is defined for every test data value combination as a one-liner with GoogleTest's `TEST_P()` syntax in (main.cpp)[//TODO].
-    For example, see (UT-STO-020's implementation)[//TODO]. This makes the tests more readable.
+- The test logic is defined in the [Tester.hpp](../../SpacePosts/MessageStorage/test/ut/Tester.hpp) and implemented in the [Tester.cpp](../../SpacePosts/MessageStorage/test/ut/Tester.cpp).
+- The test data is defined in the [main.cpp](../../SpacePosts/MessageStorage/test/ut/main.cpp) and [data/StorageStateProvider.hpp](../../SpacePosts/MessageStorage/test/ut/data/StorageStateProvider.hpp).
+    - For unit tests with a small set of test data values, one test case is defined for every test data value combination as a one-liner with GoogleTest's `TEST_P()` syntax in [main.cpp](../../SpacePosts/MessageStorage/test/ut/main.cpp).
+    For example, see [UT-STO-020's implementation](https://github.com/mabdn/fprime-spaceposts/blob/25388643a205b23bfaf6f93dae41c2be8f75c211/SpacePosts/MessageStorage/test/ut/main.cpp#L38-L63). This makes the tests more readable.
 
-    - For unit tests with a large set of test data values, a GoogleTest parameterized test fixture class is used to define a single test with `TEST_P()`. This test then generates one test case for every test data value provided by the test fixture class. The fixture class's test data is defined in (data/StorageStateProvider.hpp)[//TODO].
+    - For unit tests with a large set of test data values, a GoogleTest parameterized test fixture class is used to define a single test with `TEST_P()`. This test then generates one test case for every test data value provided by the test fixture class. The fixture class's test data is defined in [data/](../../SpacePosts/MessageStorage/test/ut/data/).
   
 - An object-oriented model of message files and the storage directory facilitates simple unit test code. 
-  It is defined in (model/)[//TODO]
+  It is defined in [model/](../../SpacePosts/MessageStorage/test/ut/model/).
 
 ## Test Strategy
 
 **Data-Driven Unit Testing**
 
-The tests separate the logic that is tested from the data that is used for the test. The logic is defined in a parameterized test method (in the (Tester.hpp)[//TODO]) while the test data is defined in a test data provider class (the (StorageStateProvider)[//TODO]). Every parameterized test method is then executed once for every combination of test parameters provided by the test data provider class.
+The tests separate the logic that is tested from the data that is used for the test. The logic is defined in a parameterized test method (in the [Tester.hpp](../../SpacePosts/MessageStorage/test/ut/Tester.hpp)) while the test data is defined in a test data provider class (the [data/StorageStateProvider.hpp](../../SpacePosts/MessageStorage/test/ut/data/StorageStateProvider.hpp)). Every parameterized test method is then executed once for every combination of test parameters provided by the test data provider class.
 
 To achieve high path and branch coverage, the data-driven approach makes sense for the `MessageStorage` component. As the component is all about storing and loading data, its test cases rely on checking the component's behavior for many different messages.
 
@@ -56,7 +56,7 @@ For every partition boundary, the value just before the boundary, the boundary v
 
 For example, in UT-STO-020, the boundaries of the message length are 0 and `MAX_MSGTEXT_LENGTH`. Thus, messages with length 0, 1, a random length in [2,MAX_MSGTEXT_LENGTH-2], MAX_MSGTEXT_LENGTH - 1, and MAX_MSGTEXT_LENGTH are tested.
 
-From (`main.cpp`)[//TODO]
+From [main.cpp](../../SpacePosts/MessageStorage/test/ut/main.cpp):
 
 ``` cpp
 TEST_P(MessageStorageTest, TestStoreMessageTextNominalEmpty)
@@ -91,7 +91,7 @@ Consequently, I developed a set of **control-flow-oriented tests** that uses w
 
 I additionally used white-box knowledge of the component's implementation to make sensible assumptions about which test method parameters can be changed without affecting other parameters. For example, it is reasonably safe to assume that the index at which a message is stored does not affect whether the component loads a certain message content correctly.
 
-Consequently, the independence assumptions allow for simplifying the unit tests by testing changes in certain parameters separately from each other instead of testing all possible combinations of changes in these parameters. For example, this allowed us to first test whether the component correctly loads messages from different indices while keeping the message content constant (UT-STO-030 //TODO link). Analogously, a second test case then tests whether the component correctly loads messages with different content while keeping the index constant (UT-STO-040 //TODO link).
+Consequently, the independence assumptions allow for simplifying the unit tests by testing changes in certain parameters separately from each other instead of testing all possible combinations of changes in these parameters. For example, this allowed us to first test whether the component correctly loads messages from different indices while keeping the message content constant ([UT-STO-030](#table-of-test-case-groups)). Analogously, a second test case then tests whether the component correctly loads messages with different content while keeping the index constant ([UT-STO-040](#table-of-test-case-groups)).
 
 ## Test Environment
 
@@ -107,7 +107,7 @@ The unit tests do not follow the embedded coding style as the source code does. 
 
 ## Table of Test Case Groups
 
-This list outlines all the unit tests that have been implemented. For more detailed explanations of how the unit tests are realized, refer to the test method comments in Tester.hpp //TODO link.
+This list outlines all the unit tests that have been implemented. For more detailed explanations of how the unit tests are realized, refer to the test method comments in [Tester.hpp](../../SpacePosts/MessageStorage/test/ut/Tester.hpp).
 
 ### Black-Box Tests
 | Test Case Group ID | Description | Steps | Variable Test Data | Realization |

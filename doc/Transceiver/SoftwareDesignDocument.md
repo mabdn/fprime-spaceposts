@@ -43,12 +43,12 @@ The `Transceiver` can hence be seen as a **façade** to the SpacePosts system on
 ### Ports
 The component is connected to other components of the flight software (see [SpacePost System Component Model](/README.md#component-model)) via ports. It translates the commands it receives into action on the satellite by initiating these actions via calls to other components through the ports.
 
-For a definition of what the individual ports of the components do, refer to [`Transceiver.fpp`](../../Transceiver/Transceiver.fpp). //TODO link
+For a definition of what the individual ports of the components do, refer to [`Transceiver.fpp`](../../SpacePosts/Transceiver/Transceiver.fpp).
 
 ### Component Diagram
 ![Transceiver Component Diagram](img/Transceiver_ComponentDiagram.png)
 
-For details on the component's interface definition, refer to [`Transceiver.fpp`](../../Transceiver/Transceiver.fpp). //TODO link
+For details on the component's interface definition, refer to [`Transceiver.fpp`](../../SpacePosts/Transceiver/Transceiver.fpp). 
 
 
 ## Dependencies
