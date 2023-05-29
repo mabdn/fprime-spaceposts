@@ -27,8 +27,8 @@ It enables users to publish their own text messages to a satellite and receive a
 </p>
 
 ## Table of Contents
-- [F' UserMessage Extension](#f-usermessage-extension)
-  - [Summary](#summary)
+
+  - [Summary](#summary) <!--DISABLED Auto Generation-->
   - [Table of Contents](#table-of-contents)
   - [Description](#description)
     - [Experience Gained From This Project](#experience-gained-from-this-project)
@@ -44,8 +44,6 @@ It enables users to publish their own text messages to a satellite and receive a
     - [Component Model](#component-model)
     - [Dynamic Model](#dynamic-model)
   - [Tests](#tests)
-    - [Example: Send Message to Satellite](#example-send-message-to-satellite)
-    - [Example: Receive Message from Satellite](#example-receive-message-from-satellite)
   - [How To Use This Software](#how-to-use-this-software)
     - [Integration With An Existing F' Flight Software System](#integration-with-an-existing-f-flight-software-system)
     - [Installation](#installation)
@@ -66,16 +64,18 @@ This repository presents one part of my contribution to the **[MEMESat-1](https
 
 <!-- TODO: Add numbers -->
 
-- **Developed** **4 flight software components for a satellite** in **embedded C++17** with **X lines of code** in **NASA**'s [F' framework](https://github.com/nasa/fprime) by designing, implementing, and testing them from scratch
+- **Developed** **4 flight software components for a satellite** in **embedded C++17** with **2,600 lines of code** in **NASA**'s [F' framework](https://github.com/nasa/fprime) by designing, implementing, and testing them from scratch
 - **Ensured** **space-grade code quality** standards with **100% line coverage** and **90% branch coverage** by data-driven unit testing with **GoogleTest** as well as thorough code reviews
 - **Elicited the requirements** for the SpacePosts software product by discussing the desired functionality and security needs with [MEMESat-1](http://www.smallsat.uga.edu/missions)'s **mission leadership** and the [funding organization](https://letsgo2space.com/)'s **CEO**, resulting in a product that closely conforms with the satellite's mission goals
-- **Documented the engineering process** extensively on **X pages** with **X lines of documentation per developed line of code** by establishing software engineering best practices in the embedded engineering team, resulting in **improved knowledge transfer** within the team
+- **Documented the engineering process** extensively on **60 pages** with **2 lines of documentation per developed line of code** by establishing software engineering best practices in the embedded engineering team, resulting in **improved knowledge transfer** within the team
 
 ### The Concept of SpacePosts
 
 SpacePosts realize a public [bulletin board](https://en.wikipedia.org/wiki/Bulletin_board_system) for text messages on a satellite in space. Anyone with amateur radio equipment shall be able to interact with the bulletin board. Essentially, users can post SpacePosts to the board and read all SpacePosts from the board. A SpacePost consists of a simple text message, just like a Tweet on Twitter.
 
 For everyone without amateur radio equipment, there is a website that allows them to publish and read SpacePosts from the board through a ground station that handles transmitting and receiving.
+
+<!--TODO Add conceptual figure: Earth, MEMESat in orbit, user sending message, others receiving message, "This is Alice from the U.S." -->
 
 ### Realization of SpacePosts
 
@@ -122,6 +122,16 @@ This repository spotlights how I contributed to MEMESat-1 by developing the enti
 ### UML Use Case Diagram
 ![UML Use Case Diagram](doc/README/img/UseCaseDiagram.png)
 
+
+<!-- TODO: Add examples
+### Example: Send Message to Satellite
+Make sure to include at least one nicely visualized example/tutorial.
+
+Move further up if I do this
+
+### Example: Receive Message from Satellite
+Make sure to include at least one nicely visualized example/tutorial. -->
+
 ## Design
 
 ### Component Model
@@ -136,7 +146,7 @@ The following three components have been custom-developed for this system:
    
   * **MessageStorage** (also see the [full component specification](doc/MessageStorage/SoftwareDesignDocumentation.md))
 
-    Component with one port to accept a `SpacePost` to store it on the file system and another port to load a given number of recently stored `SpacePost`s. // TODO Rename SpacePost realted names
+    Component with one port to accept a `SpacePost` to store it on the file system and another port to load a given number of recently stored `SpacePost`s.
 
     It is a separate component because it encapsulates the general logic for storing `Fw::Serializable` C++ objects in a file on the file system using the Operating System Abstraction Layer (OSAL) of F'. Thus, the component can easily be adapted to additionally store other types than only `SpacePost`s on the satellite's file system in the future.
 
@@ -153,10 +163,9 @@ The following three components have been custom-developed for this system:
   It is a separate component because it encapsulates how users can trigger the loading and storing of `SpacePost`s on the satellite. Consequently, the Transceiver implementation can be swapped out to change how the satellite communicates messages with users on the ground.
 
 The system uses the following three framework components to integrate its functionality into the F' reference flight software system `Ref`:
-* **[Svc.CommandDispatcher](#TODO)**: Receives commands sent to the satellite by ground station operators and forwards them to the appropriate component.
-* **[Svc.ActiveRateGroup](#TODO)**: Calls the Transceiver component's `scheduleDownlink` port at a fixed rate to consistently trigger downlinking the `SpacePost`s stored on the satellite.
-*  **[Svc.Framer](#TODO)**: Handles downlinking a given F' type to the ground station.
-  <!-- TODO: Is Svc.Framer correct? -->
+* **[Svc.CommandDispatcher](https://github.com/nasa/fprime/blob/master/Svc/CmdDispatcher/docs/sdd.md)**: Receives commands sent to the satellite by ground station operators and forwards them to the appropriate component.
+* **[Svc.ActiveRateGroup](https://github.com/nasa/fprime/blob/master/Svc/ActiveRateGroup/docs/sdd.md)**: Calls the Transceiver component's `scheduleDownlink` port at a fixed rate to consistently trigger downlinking the `SpacePost`s stored on the satellite.
+*  **[Svc.Framer](https://github.com/nasa/fprime/blob/master/Svc/Framer/docs/sdd.md)**: Handles downlinking a given F' type to the ground station.
 
 ### Dynamic Model
 The following UML sequence diagrams exemplarily outline how the defined components interact to fulfill the two use cases of posting and requesting messages. The custom-developed components are highlighted in orange.
@@ -175,17 +184,9 @@ The system downlinks recently stored `SpacePost`s twice. The first time is in re
 
 ## Tests
 
-Go the extra mile and write tests for your application. Then provide examples on how to run them here.
+I developed unit tests for the components that cover 100% of the code lines and 90% of the code branches. Most unit tests follow the **data-driven unit test style**. I implemented them with the **GoogleTest testing library**. Both **black-box Boundary Value Analysis** and **white-box testing** strategies are applied. For the MessageStorage components, I designed an **object-oriented model** of test utility classes to facilitate simple unit test code.
 
-TODO: Unit tests provide ..% line coverage
-
-
-### Example: Send Message to Satellite
-Make sure to include at least one nicely visualized example/tutorial.
-TODO: Move further up if I do this
-
-### Example: Receive Message from Satellite
-Make sure to include at least one nicely visualized example/tutorial.
+See the [MessageStorage Unit Test Documenation](doc/MessageStorage/UnitTestDocumentation.md).
 
 
 ## How To Use This Software
