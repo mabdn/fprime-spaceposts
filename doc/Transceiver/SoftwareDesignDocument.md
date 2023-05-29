@@ -18,7 +18,7 @@ F-TRA-022 | The component shall provide a way to configure, during runtime, whet
 F-TRA-023 | The component shall automatically configure itself to reject commands as in F-TRA-022 every time the satellite reaches critical power | Manual code review
 F-TRA-024 | The component shall only execute the command in F-TRA-021 if a certain amount of time has passed since the last downlink of SpacePosts by the component, no matter in which way it was triggered | Unit test
 F-TRA-025 | The component shall provide a way to configure the amount of time in F-TRA-024 during runtime | Unit test
-F-TRA-028 | The component shall provide a scheduling input port which can be connected to the output port of an active rate group. Every time the port is called, the component initiates a downlink of a certain number of last stored messages as a string | Unit test, Integration test
+F-TRA-028 | The component shall provide a scheduling input port that can be connected to the output port of an active rate group. Every time the port is called, the component initiates a downlink of a certain number of last stored messages as a string | Unit test, Integration test
 F-TRA-030 | Downlinking messages shall be performed in one single transmission for each message | Unit test 
 F-TRA-050 | In every downlink, the downlinked messages should be the messages which have been stored the most recently measured from the time of the downlink (which could be different from the time of the request) | Integration test
 
@@ -97,4 +97,4 @@ HAM radio user's command for requesting downlinks shall be disabled when the sat
 Initialize the configuration parameter for F-TRA-021 to disable the execution. Every time the satellite enters the critical power state, the onboard computer running the flight software is restarted. Thus, the component will be freshly initialized and the execution disabled.
 
 ## Test Summary
-*The unit tests for this component were not part of my work at University of Georgia's Small Satellite Research Laboratory and are thus not included in this repository. Please refer to the [unit tests of the MessageStorage component](../MessageStorage/UnitTestDocumentation.md) for an example of unit tests I developed.*
+*The unit tests for this component were not part of my work at the University of Georgia's Small Satellite Research Laboratory and are thus not included in this repository. Please refer to the [unit tests of the MessageStorage component](../MessageStorage/UnitTestDocumentation.md) for an example of unit tests I developed.*

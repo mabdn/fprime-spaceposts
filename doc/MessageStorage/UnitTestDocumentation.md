@@ -53,7 +53,7 @@ Next, I developed **Boundary Value Analysis** tests for these partitions. This
 
 For every partition boundary, the value just before the boundary, the boundary value, and the value just past the boundary are tested. Additionally, for large equivalence classes, one random value from inside the partition is tested.
 
-For example, in UT-STO-020, the boundaries of the message length are 0 and `MAX_MSGTEXT_LENGTH`. Thus, messages with length 0, 1, a random length in [2,MAX_MSGTEXT_LENGTH-2], MAX_MSGTEXT_LENGTH - 1, and MAX_MSGTEXT_LENGTH are tested.
+For example, in UT-STO-020, the boundaries of the message length are 0 and `MAX_MSGTEXT_LENGTH`. Thus, messages with length 0, 1, a random length in [2, MAX_MSGTEXT_LENGTH - 2], MAX_MSGTEXT_LENGTH - 1, and MAX_MSGTEXT_LENGTH are tested.
 
 From [main.cpp](../../SpacePosts/MessageStorage/test/ut/main.cpp):
 

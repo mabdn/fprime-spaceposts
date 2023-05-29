@@ -81,7 +81,7 @@ For everyone without amateur radio equipment, there is a website that allows the
 
 In fact, SpacePosts are not only a theoretical concept but they are being realized in the form of the **[MEMESat-1](https://doi.org/10.1109/AERO55745.2023.10116009)** CubeSat satellite at the **[University of Georgia's Small Satellite Research Laboratory](https://letsgo2space.com/talk-to-satellites/).**
 
-MEMESat-1 is set to be launched into space in cooperation with NASA in Q2-2024. It is build for a [nonprofit organization](https://letsgo2space.com/memesatellite-1/) which will use the satellite in education workshops for high school students.
+MEMESat-1 is set to be launched into space in cooperation with NASA in Q2-2024. It is built for a [nonprofit organization](https://letsgo2space.com/memesatellite-1/) that will use the satellite in education workshops for high school students.
 
 
 This repository spotlights how I contributed to MEMESat-1 by developing the entire satellite-side software system for SpacePosts on MEMESat-1. I defined, designed, implemented, and tested this software as one part of my work during a 7-week full-time (40h/week) position as a Flight Software Engineer in the Command & Data Handling (CDH) team.
@@ -184,9 +184,9 @@ The system downlinks recently stored `SpacePost`s twice. The first time is in re
 
 ## Tests
 
-I developed unit tests for the components that cover 100% of the code lines and 90% of the code branches. Most unit tests follow the **data-driven unit test style**. I implemented them with the **GoogleTest testing library**. Both **black-box Boundary Value Analysis** and **white-box testing** strategies are applied. For the MessageStorage components, I designed an **object-oriented model** of test utility classes to facilitate simple unit test code.
+I developed unit tests for the components that cover 100% of the code lines and 90% of the code branches. Most unit tests follow the **data-driven unit test style**. I implemented them with the **GoogleTest testing library**. I applied both **black-box Boundary Value Analysis** and **white-box Control Flow Testing** strategies. For the MessageStorage component, I additionally designed an **object-oriented model** of test utility classes to facilitate simple unit test code.
 
-See the [MessageStorage Unit Test Documenation](doc/MessageStorage/UnitTestDocumentation.md).
+See the [MessageStorage Unit Test Documentation](doc/MessageStorage/UnitTestDocumentation.md).
 
 
 ## How To Use This Software
@@ -206,8 +206,8 @@ Other developers can use the implementation provided in this repository by addin
    
 **Install F' v3.1.0**
 
-1. Setup a virtual environment for F' and activate it:
-  Choose a location to generate a virtual environment. This can be any path the user has read and write access to. The example uses th path `$HOME/fprime-venv`.
+1. Set up a virtual environment for F' and activate it:
+  Choose a location to generate a virtual environment. This can be any path the user has read and write access to. The example uses the path `$HOME/fprime-venv`.
 
   ```
   python3 -m venv $HOME/fprime-venv
@@ -235,12 +235,12 @@ git clone https://github.com/mabdn/fprime-spaceposts SpacePosts
 
 **Test the installation and build your deployment**
 
-Follow the typical steps to test and build and installation in F' (see [F' Installation Guide](https://github.com/nasa/fprime/blob/v3.1.0/docs/INSTALL.md)). For example, build the individual SpacePost components.
+Follow the typical steps to test and build an installation in F' (see [F' Installation Guide](https://github.com/nasa/fprime/blob/v3.1.0/docs/INSTALL.md)). For example, build the individual SpacePost components.
 
 Then, connect your F' flight software to the SpacePosts topology (see [Integration With An Existing F' Flight Software System](#integration-with-an-existing-f-flight-software-system)). If you do not have your own F' flight software, you can always use the `Ref` flight software example deployment provided by the F' framework.
 
 ## Credits
-Developed based on the NASA's [F' Flight Software Framework](https://github.com/nasa/fprime).
+Developed based on NASA's [F' Flight Software Framework](https://github.com/nasa/fprime).
 
 Purpose-built as a part of the [MEMESat-1](https://ieeexplore.ieee.org/document/10116009) satellite mission at the University of Georgia's [Small Satellite Research Laboratory](http://www.smallsat.uga.edu/) (SSRL).
 

@@ -6,7 +6,7 @@ The `Moderator` component is a passive F' component that decides whether receive
 ## Necessity
 An onboard moderation is necessary because the satellite is supposed to receive messages from HAM radio users (see [Concepts of SpacePosts](../../README.md#the-concept-of-spaceposts)). These users send their messages to the satellite using their own radio equipment. Consequently, there is no way to check the content of their message prior to receiving them on the satellite.
 
-However, one of the SpacePost system's requirements is to ensure that no inappropriate messages published by the satellite. We chose to fulfill this requirement by rejecting an inappropriate message when it is received and thus before it is stored on the satellite.
+However, one of the SpacePost system's requirements is to ensure that no inappropriate messages are published by the satellite. We chose to fulfill this requirement by rejecting an inappropriate message when it is received and thus before it is stored on the satellite.
 
 ## Requirements
 ### Functional Requirements
@@ -56,4 +56,4 @@ By injecting different implementations of the interface into the component, deve
 
 
 ## Test Summary
-*The unit tests for this component were not part of my work at University of Georgia's Small Satellite Research Laboratory and are thus not included in this repository. Please refer to the [unit tests of the MessageStorage component](../MessageStorage/UnitTestDocumentation.md) for an example of unit tests I developed.*
+*The unit tests for this component were not part of my work at the University of Georgia's Small Satellite Research Laboratory and are thus not included in this repository. Please refer to the [unit tests of the MessageStorage component](../MessageStorage/UnitTestDocumentation.md) for an example of unit tests I developed.*
