@@ -28,7 +28,7 @@ namespace SpacePosts
         //!
         //! The components uses the strategy design pattern. An object which implements the `ModerationStrategy`
         //! strategy interface can be injected into the component in its constructor. The `ModerationStrategy`
-        //! interface requires a single method, which has the signature `bool checkMessage(UserMessage message)`.
+        //! interface requires a single method, which has the signature `bool checkMessage(SpacePost message)`.
         ModerationStrategy &m_moderationStrategy;
 
     public:

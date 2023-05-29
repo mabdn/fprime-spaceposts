@@ -1,10 +1,10 @@
 module SpacePosts {
 
-  @ Component to receive `UserMessage`s from users on the ground 
-  @ and to downlink the `UserMessage`s stored on the satellite to users on the ground.
+  @ Component to receive `SpacePost`s from users on the ground 
+  @ and to downlink the `SpacePost`s stored on the satellite to users on the ground.
   @
   @ It is a separate component because it encapsulates how users can trigger the loading
-  @ and storing of `UserMessage`s on the satellite. Consequently, the Transceiver 
+  @ and storing of `SpacePost`s on the satellite. Consequently, the Transceiver 
   @ implementation can be swapped out to change how the satellite communicates messages with users on the ground.
   passive component Transceiver {
     

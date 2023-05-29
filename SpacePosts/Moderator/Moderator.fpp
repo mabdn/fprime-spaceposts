@@ -1,6 +1,6 @@
 module SpacePosts {
 
-  @ Component with one input port and one output port where `UserMessage`s given to the input port must
+  @ Component with one input port and one output port where `SpacePost`s given to the input port must
   @ pass a moderation check to be output on the output port. 
   @
   @ It has the same interface for storing (i.e., with the same input port type) as the MessageStorage 
@@ -48,10 +48,10 @@ module SpacePosts {
     # Telemetry
     # ----------------------------------------------------------------------
 
-    @ The number of UserMessages this component has passed to its output port because they passed the moderation check
+    @ The number of SpacePosts this component has passed to its output port because they passed the moderation check
     telemetry ACCEPT_COUNT: U32 format "{} uplinks received"
 
-    @ The number of UserMessages this component has rejected because they did not pass the moderation check
+    @ The number of SpacePosts this component has rejected because they did not pass the moderation check
     telemetry REJECT_COUNT: U32 format "{} downlinks performed"
   }
 }

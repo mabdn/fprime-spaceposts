@@ -1,4 +1,4 @@
-# F' UserMessage Extension
+# F' SpacePosts
 <!-- TODO: Shields?
   * LOC
   * Comments
@@ -129,32 +129,32 @@ The system is realized by introducing three new components and by interfacing wi
 
 **UML Component Diagram**
 
-![UserMessage System UML Component Diagram](doc/README/img/ComponentDiagram.png)
+![SpacePost System UML Component Diagram](doc/README/img/ComponentDiagram.png)
 
 
 The following three components have been custom-developed for this system:
    
   * **MessageStorage** (also see the [full component specification](doc/MessageStorage/SoftwareDesignDocumentation.md))
 
-    Component with one port to accept a `UserMessage` to store it on the file system and another port to load a given number of recently stored `UserMessage`s.
+    Component with one port to accept a `SpacePost` to store it on the file system and another port to load a given number of recently stored `SpacePost`s. // TODO Rename SpacePost realted names
 
-    It is a separate component because it encapsulates the general logic for storing `Fw::Serializable` C++ objects in a file on the file system using the Operating System Abstraction Layer (OSAL) of F'. Thus, the component can easily be adapted to additionally store other types than only `UserMessage`s on the satellite's file system in the future.
+    It is a separate component because it encapsulates the general logic for storing `Fw::Serializable` C++ objects in a file on the file system using the Operating System Abstraction Layer (OSAL) of F'. Thus, the component can easily be adapted to additionally store other types than only `SpacePost`s on the satellite's file system in the future.
 
 * **Moderator** (also see the [full component specification](doc/Moderator/SoftwareDesignDocument.md))
 
-	Component with one input port and one output port where `UserMessage`s given to the input port must pass a moderation check to be output on the output port. 
+	Component with one input port and one output port where `SpacePost`s given to the input port must pass a moderation check to be output on the output port. 
 
   It has the same interface for storing (i.e., with the same input port type) as the MessageStorage component. Thus, it can be optionally plugged in between the Transceiver component and the MessageStorage component without any of them knowing about the existence of the Moderator component. Therefore it is reasonable to have the Moderator as a separate component.
 
 * **Transceiver** (also see the [full component specification](doc/Transceiver/SoftwareDesignDocument.md))
 
-	Component to receive `UserMessage`s from users on the ground and to downlink the `UserMessage`s stored on the satellite to users on the ground.
+	Component to receive `SpacePost`s from users on the ground and to downlink the `SpacePost`s stored on the satellite to users on the ground.
 
-  It is a separate component because it encapsulates how users can trigger the loading and storing of `UserMessage`s on the satellite. Consequently, the Transceiver implementation can be swapped out to change how the satellite communicates messages with users on the ground.
+  It is a separate component because it encapsulates how users can trigger the loading and storing of `SpacePost`s on the satellite. Consequently, the Transceiver implementation can be swapped out to change how the satellite communicates messages with users on the ground.
 
 The system uses the following three framework components to integrate its functionality into the F' reference flight software system `Ref`:
 * **[Svc.CommandDispatcher](#TODO)**: Receives commands sent to the satellite by ground station operators and forwards them to the appropriate component.
-* **[Svc.ActiveRateGroup](#TODO)**: Calls the Transceiver component's `scheduleDownlink` port at a fixed rate to consistently trigger downlinking the `UserMessage`s stored on the satellite.
+* **[Svc.ActiveRateGroup](#TODO)**: Calls the Transceiver component's `scheduleDownlink` port at a fixed rate to consistently trigger downlinking the `SpacePost`s stored on the satellite.
 *  **[Svc.Framer](#TODO)**: Handles downlinking a given F' type to the ground station.
   <!-- TODO: Is Svc.Framer correct? -->
 
@@ -163,13 +163,13 @@ The following UML sequence diagrams exemplarily outline how the defined componen
 
 **Receive a SpacePost to store on the satellite**
 
-Two `UserMessage`s are sent to the satellite after each other. The first one is discarded during moderation, the second one passes moderation.
+Two `SpacePost`s are sent to the satellite after each other. The first one is discarded during moderation, the second one passes moderation.
 
 ![UML Sequence Diagram for receiving a message](doc/README/img/Receive_SequenceDiagram.png)
 
 **Send recently stored SpacePosts from the satellite**
 
-The system downlinks recently stored `UserMessage`s twice. The first time is in response to a request via a command from the ground station. The second one is triggered by an ActiveRateGroup which calls the Transceiver's `scheduleDownlink` port.  
+The system downlinks recently stored `SpacePost`s twice. The first time is in response to a request via a command from the ground station. The second one is triggered by an ActiveRateGroup which calls the Transceiver's `scheduleDownlink` port.  
 
 ![UML Sequence Diagram for downlinking recent messages](doc/README/img/Send_SequenceDiagram.png)
 

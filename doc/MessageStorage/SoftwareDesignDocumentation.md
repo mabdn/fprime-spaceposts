@@ -13,7 +13,7 @@ The `MessageStorage` component is a passive F' component responsible for storing
 
 ## Interface to Other Components
 
-### Component Diagram
+### Component Interface Diagram
 ![MessageStorage Component Diagram](img/MessageStorage_ComponentDiagram.png)
 ### Ports
 Other components which want to use `MessageStorage` to store a message need to call its ports.
