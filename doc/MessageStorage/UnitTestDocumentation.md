@@ -8,8 +8,7 @@
 - An object-oriented model is used to simplify the unit tests by modeling helper data and functionality in separate classes.
 
 ## Table of Contents
-- [MessageStorage Unit Test Documentation](#messagestorage-unit-test-documentation)
-  - [Summary](#summary)
+  - [Summary](#summary) <!--DISABLE AUTO-GENERATION -->
   - [Table of Contents](#table-of-contents)
   - [Test Success Criteria](#test-success-criteria)
   - [How To Navigate The Unit Test Code](#how-to-navigate-the-unit-test-code)
