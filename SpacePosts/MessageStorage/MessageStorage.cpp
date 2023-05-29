@@ -64,13 +64,11 @@ namespace SpacePosts
 
 		this->tlmWrite_STORE_COUNT(++this->numStoreAttempts);
 
-		// TODO Optional: Handle making space / deleting old messages by the storage component
-		// Or at least scheduele them for deletion by the FileRecycler?
 		const bool success = this->storeMessage(index, data);
 
 		const SpacePosts::MessageStorageStatus status = success
-														? SpacePosts::MessageStorageStatus::OK
-														: SpacePosts::MessageStorageStatus::ERROR;
+															? SpacePosts::MessageStorageStatus::OK
+															: SpacePosts::MessageStorageStatus::ERROR;
 		return status;
 	}
 
@@ -167,11 +165,6 @@ namespace SpacePosts
 									   MessageWriteError::DELIMITER_SIZE);
 
 			/*
-			 * Write checksum
-			 */
-			// TODO Optional: Implement checksum
-
-			/*
 			 *	Write message size = length of message type
 			 */
 			// Serialize message 1st time just to get its size
@@ -255,11 +248,6 @@ namespace SpacePosts
 				this->log_WARNING_LO_MESSAGE_LOAD_FAILED(index, MessageReadError::DELIMITER_CONTENT, delimiter);
 				throw MessageReadError(MessageReadError::DELIMITER_CONTENT);
 			}
-
-			/*
-			 *	Read checksum
-			 */
-			// TODO Optional: Implement checksum
 
 			/*
 			 *	Read message size
@@ -463,8 +451,6 @@ namespace SpacePosts
 		// Handle index wrap around
 		if (this->nextIndexCounter == 0)
 		{
-			// TODO Optional: Remove old SpacePosts at indices 0,1,2,... if they still exist 
-			// -> e.g. schedule FileRecycler?
 			this->log_WARNING_LO_INDEX_WRAP_AROUND();
 		}
 
@@ -478,7 +464,6 @@ namespace SpacePosts
 		if (this->lastSuccessfullyStoredIndices.size() >= MESSAGESTORAGE_STORED_INDEX_HISTORY_SIZE)
 		{
 			this->lastSuccessfullyStoredIndices.pop_front();
-			// TODO Optional: We could tell the file recycler at this point that the file is no longer needed
 		}
 		this->lastSuccessfullyStoredIndices.push_back(index);
 	}
@@ -491,9 +476,9 @@ namespace SpacePosts
 	}
 
 	void MessageStorage::writeSerializeBufferToFile(Fw::SerializeBufferBase &serializeBuffer, Os::File &file,
-													   const NATIVE_INT_TYPE expected_write_size, const U32 &index,
-													   const MessageWriteError write_error_stage,
-													   const MessageWriteError size_error_stage)
+													const NATIVE_INT_TYPE expected_write_size, const U32 &index,
+													const MessageWriteError write_error_stage,
+													const MessageWriteError size_error_stage)
 	{
 		NATIVE_INT_TYPE actual_write_size = serializeBuffer.getBuffLength();
 		FW_ASSERT(actual_write_size == expected_write_size, actual_write_size);
@@ -502,9 +487,9 @@ namespace SpacePosts
 	}
 
 	void MessageStorage::writeRawBufferToFile(const void *const buffer_address, Os::File &file,
-												 const NATIVE_INT_TYPE expected_write_size, const U32 &index,
-												 const MessageWriteError write_error_stage,
-												 const MessageWriteError size_error_stage)
+											  const NATIVE_INT_TYPE expected_write_size, const U32 &index,
+											  const MessageWriteError write_error_stage,
+											  const MessageWriteError size_error_stage)
 	{
 		NATIVE_INT_TYPE write_size{expected_write_size}; // Might be overwritten by file.write()
 		const Os::File::Status file_op_status = file.write(buffer_address, write_size, true);
@@ -523,9 +508,9 @@ namespace SpacePosts
 	}
 
 	void MessageStorage::readRawBufferFromFile(void *const buffer_address, Os::File &file,
-												  const NATIVE_INT_TYPE expected_read_size, const U32 &index,
-												  const MessageReadError read_error_stage,
-												  const MessageReadError size_error_stage)
+											   const NATIVE_INT_TYPE expected_read_size, const U32 &index,
+											   const MessageReadError read_error_stage,
+											   const MessageReadError size_error_stage)
 	{
 		NATIVE_INT_TYPE read_size{expected_read_size}; // Will be overwritten by file.read()
 		const Os::File::Status file_op_status = file.read(buffer_address, read_size, true);

@@ -26,7 +26,7 @@ namespace SpacePosts
       Moderator(
           const char *const compName,
           ModerationStrategy &moderationStrategy) : ModeratorComponentBase(compName),
-                                                          m_moderationStrategy(moderationStrategy) // TODO Does this copy?
+                                                    m_moderationStrategy(moderationStrategy)
   {
   }
 

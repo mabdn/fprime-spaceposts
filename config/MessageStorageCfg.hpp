@@ -18,20 +18,20 @@ namespace
 {
 
   enum
-  { 
+  {
     // Initial index for SpacePost files to use if no files are found in the storage directory, and
     // thus indexing cannot be continued from the last found index.
-    // 
+    //
     // E.g., will be used to store the first SpacePost.
     MESSAGESTORAGE_INITIAL_INDEX = 0,
-    
+
     // Byte value that is placed + expected at the beginning of every
     // valid SpacePost file.
     // Basic sanity check against file integrity + parsing wrong files
     MESSAGESTORAGE_MSGFILE_DELIMITER = 0xD9,
 
     // The maximum number of indices of validly stored SpacePosts to keep in the lastSuccessfullyStoredIndices data
-    // strucutre. 
+    // strucutre.
     //
     // See the documentation of MessageStorage::lastSuccessfullyStoredIndices for more information.
     MESSAGESTORAGE_STORED_INDEX_HISTORY_SIZE = SpacePosts::FppConstant_SpacePost_Batch_Size::SpacePost_Batch_Size,
@@ -40,7 +40,7 @@ namespace
     // (in char* representation of Os::Directory::read()).
     //
     // Count does not include a terminating null character.
-    // 
+    //
     // Currently: Maximum length of index (U32) as decimal string + length of extension
     MESSAGESTORAGE_MSGFILE_NAME_MAXLENGTH = strlen("4294967295") + strlen(".spaceposts")
   };

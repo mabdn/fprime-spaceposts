@@ -7,7 +7,7 @@ namespace SpacePosts
     {
         bool result{true};
 
-        // TODO implement check of message against moderation criteria here
+        // TODO Implement depending on your application: Check message against moderation criteria here
 
         return result;
     }

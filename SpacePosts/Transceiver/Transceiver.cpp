@@ -95,7 +95,6 @@ namespace SpacePosts
     }
 
     // Check if cooldown time has passed
-    // TODO Unit Test: Check whether cooldown protection does not allow another downlink before cooldown time has passed
     const U32 cooldown_time = paramGet_DOWNLINK_COOLDOWN_TIME(valid);
     FW_ASSERT(valid.e == Fw::ParamValid::VALID || valid.e == Fw::ParamValid::DEFAULT, valid.e);
 
@@ -133,8 +132,6 @@ namespace SpacePosts
     {
       const SpacePost &message = message_array[i];
 
-      // TODO Send message correctly to the Framer: Allocate a comBuffer, serialize the message into it, send it
-      // Olivia probably knows how to do this
       Fw::ComBuffer comBuffer{}; // ComBuffer is autoamtically allocated on the stack on intialization => no alloc call
 
       // Serialize message into comBuffer
@@ -146,7 +143,6 @@ namespace SpacePosts
       {
         // Svc.Framer does not use the context parameter, so we can just put 0
         this->downlinkMessage_out(0, comBuffer, 0);
-        // TODO Who triggers an error event if downlink fails?
       }
     }
 
@@ -156,11 +152,7 @@ namespace SpacePosts
 
   void Transceiver::rejectHamUserDownlinkCmd(const FwOpcodeType opCode, const U32 cmdSeq)
   {
-    // TODO Maybe we don't even want to give a response if the command is disabled to conserve power!
-    // TODO Check if cmdResponse_out is required
-    // Not giving a cmdResponse_out might confuse the CommandDispatcher.
-    // However, to prevent malicious users from spamming our event log, it might be better not to respond at all.
-    // => Needs discussion with Isaac Garon
+    // Give a response for now. This behavior might change in the future, thus it is its own function.
     this->cmdResponse_out(opCode, cmdSeq, Fw::CmdResponse::EXECUTION_ERROR);
   }
 

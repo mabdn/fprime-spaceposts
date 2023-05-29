@@ -107,8 +107,6 @@ module SpacePosts {
     @ Downlinking the last SpacePosts stored on the satellite has failed due to an error while downlinking a message
     event DOWNLINK_FAILED(
         index: U32 @< The index of the message that failed to downlink
-        # TODO: Add parameters or remove event. Depends on how throwing errors while downlinking is implemented
-        # error: TRANSCEIVER_DOWNLINK_ERROR @< Error Code that provides more information about why the downlink failed
         ) \
         severity warning high \
         format "Downlinking message with index #{} failed" \
